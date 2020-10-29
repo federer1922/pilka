@@ -37,7 +37,11 @@ class UsersController < ApplicationController
   def subtract_goal
     user = User.find params["user_id"]
     user.goals_count = user.goals_count - 1
-    user.save 
+    if user.save
+      #proceed
+    else
+      flash[:alert] = user.errors.full_messages.first 
+    end
 
     redirect_to action: "new"
   end
