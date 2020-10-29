@@ -10,7 +10,7 @@ class User < ApplicationRecord
   # end  
 
   def minutes_played
-    967
+    742
   end
   
   def validate_goals_count
