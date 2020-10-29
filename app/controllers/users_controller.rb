@@ -4,10 +4,10 @@ class UsersController < ApplicationController
     user.username = params["username"]
     user.save
     
-    redirect_to action: "new"
+    redirect_to action: "index"
   end
   
-  def new
+  def index
     #user = User.new
     #user.username = "Arek"
     #user2 = User.new
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     user.goals_count = user.goals_count + 1
     user.save 
 
-    redirect_to action: "new"
+    redirect_to action: "index"
   end
 
   def subtract_goal
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
       flash[:alert] = user.errors.full_messages.first 
     end
 
-    redirect_to action: "new"
+    redirect_to action: "index"
   end
   
 end

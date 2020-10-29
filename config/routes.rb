@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: "home#home"
 
-  get '/user', to: 'users#new'
+  get '/user', to: 'users#index'
 
   get '/create', to: 'users#create'
 
