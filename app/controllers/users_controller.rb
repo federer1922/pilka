@@ -2,14 +2,16 @@ class UsersController < ApplicationController
   def create 
     user = User.new
     user.username = params["username"]
+    user.goals_count = 0
+    user.match_count = 0
     user.save
     
     redirect_to action: "index"
   end
-  
+
   def index
     #user = User.new
-    #user.username = "Arek"
+    #user.username = "Arek"z
     #user2 = User.new
     #user2.username = "Pawel"
     #user3 = User.new
@@ -46,4 +48,25 @@ class UsersController < ApplicationController
     redirect_to action: "index"
   end
   
+  def add_match
+    user = User.find params["user_id"]
+    user.match_count = user.match_count + 1
+    user.save 
+    
+    redirect_to action: "index"
+
+  def subtract_match
+    user = User.find params["user_id"]
+    user.match_count = user.match_count - 1
+    if user.save
+      #proceed
+    else
+      flash[:alert] = user.errors.full_messages.first 
+    end
+  
+      redirect_to action: "index"
+    end
+
+  end
+
 end

@@ -1,35 +1,85 @@
 
 
 
+<form action="/create" >
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <label for="username"> Add player </label><br>
+      <input type="text" class="form-control" name="username" placeholder="Enter player name">
+      <button type="submit" class="btn btn-info">Submit</button>
+      <p>
+      </p>
+    </div>   
+  </div>
+</div>
+</form>
 
-<div>
-  <ul>
+
+<div class="container">
+<div class="row">
+  <div class="col-sm-2">
+  Name
+  </div>
+  <div class="col-sm-2">
+  Goals count
+  </div>
+  <div class="col-sm-2">
+  Matches played
+  </div>
+  <div class="col-md-auto">
+  </div>
+</div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+    </div>
+  </div>
+  <p>
+  </p>
   <% @users.each do |user| %>
-    <li>
-    <%= user.username %>, <%= user.goals_count %>, <%= user.minutes_played %>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= user.username %>
+      </div>
 
-      <form action="/add_goal" >
-        <input type="hidden" name="user_id" value="<%= user.id %>">
-        <input type="submit" value="Add goal">
+      <div class="col-sm-2">
+        <%= user.goals_count %>
+      </div>
+      <div class="col-sm-2">
+      <%= user.match_count %>
+      </div>
+      <div class="col-md-auto">
 
-      </form>
+        <form class="form-inline" action="/add_goal" style="display: inline;">
+          <input type="hidden" name="user_id" value="<%= user.id %>">
+          <button type="submit" class="btn btn-success">Add goal</button>
+        </form>
 
-      <form action="/subtract_goal" >
-        <input type="hidden" name="user_id" value="<%= user.id %>">
-        <input type="submit" value="Subtract goal">
-  
-      </form>
-  
-    </li>
+        <form class="form-inline" action="/subtract_goal" style="display: inline;">
+          <input type="hidden" name="user_id" value="<%= user.id %>">
+          <button type="submit" class="btn btn-danger">Subtract goal</button>
+        </form>
+        
+        <form class="form-inline" action="/add_match" style="display: inline;">
+          <input type="hidden" name="user_id" value="<%= user.id %>">
+          <button type="submit" class="btn btn-primary">Add match</button>
+        </form>
+
+        <form class="form-inline" action="/subtract_match" style="display: inline;">
+          <input type="hidden" name="user_id" value="<%= user.id %>">
+          <button type="submit" class="btn btn-warning">Subtract match</button>
+        </form>
+      </div>
+    </div>
   <% end %>
-  </ul>
+
 </div>
 
 
+    </div>
+  </div>
+</div>
 
-<form action="/create" >
-  <label for="username"> Username:</label><br>
-  <input type="text" name="username"><br>
-  <input type="submit" value="Submit">
-
-</form>

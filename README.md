@@ -61,3 +61,5 @@ def new
    git diff  -bez cached oglada czerwone ale tylko modyfikacje istniejacych juz plikow
    git diff --cached  - obejrzenie zmian, cached oglada zielone
    
+
+User.all.map { |user| user.match_count = 0; user.save }  ustawianie match count dla kazdego uzytkownika
