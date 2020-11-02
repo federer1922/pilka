@@ -54,6 +54,7 @@ class UsersController < ApplicationController
     user.save 
     
     redirect_to action: "index"
+  end  
 
   def subtract_match
     user = User.find params["user_id"]
@@ -61,12 +62,11 @@ class UsersController < ApplicationController
     if user.save
       #proceed
     else
-      flash[:alert] = user.errors.full_messages.first 
+      flash[:alert] = user.errors.full_messages.first
+
     end
-  
       redirect_to action: "index"
-    end
 
   end
-
+ 
 end

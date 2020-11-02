@@ -21,5 +21,4 @@ class User < ApplicationRecord
       errors.add(:match_count, 'cant be less than 0')
     end
   end
-
 end
