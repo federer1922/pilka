@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get '/add_match', to: 'users#add_match'
 
-  get 'subtract_match', to: 'users#subtract_match'
+  get '/subtract_match', to: 'users#subtract_match'
+
+  get '/destroy', to: 'users#destroy'
 
 end
