@@ -55,22 +55,27 @@
 
         <form class="form-inline" action="/add_goal" style="display: inline;">
           <input type="hidden" name="user_id" value="<%= user.id %>">
-          <button type="submit" class="btn btn-success">Add goal</button>
+          <button type="submit" class="btn btn-success btn-sm">Add goal</button>
         </form>
 
         <form class="form-inline" action="/subtract_goal" style="display: inline;">
           <input type="hidden" name="user_id" value="<%= user.id %>">
-          <button type="submit" class="btn btn-danger">Subtract goal</button>
+          <button type="submit" class="btn btn-danger btn-sm">Subtract goal</button>
         </form>
         
         <form class="form-inline" action="/add_match" style="display: inline;">
           <input type="hidden" name="user_id" value="<%= user.id %>">
-          <button type="submit" class="btn btn-primary">Add match</button>
+          <button type="submit" class="btn btn-primary btn-sm">Add match</button>
         </form>
 
         <form class="form-inline" action="/subtract_match" style="display: inline;">
           <input type="hidden" name="user_id" value="<%= user.id %>">
-          <button type="submit" class="btn btn-warning">Subtract match</button>
+          <button type="submit" class="btn btn-warning btn-sm">Subtract match</button>
+        </form>
+
+        <form class="form-inline" action="/destroy" style="display: inline;">
+          <input type="hidden" name="user_id" value="<%= user.id %>">
+          <button type="submit" class="btn btn-dark btn-sm">Remove player</button>
         </form>
       </div>
     </div>
