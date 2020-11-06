@@ -1,5 +1,8 @@
 class User < ApplicationRecord
 
+  has_many :matches_users 
+  has_many :matches, through: :matches_users
+
   validate :validate_goals_count
   # def goals_count
   #  @goals_count

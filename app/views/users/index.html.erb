@@ -1,35 +1,36 @@
 
 
 
-<form action="/create" >
+
 <div class="container">
   <div class="row">
     <div class="col">
-      <label for="username">  <p class="font-weight-bold">Add player</p> </label><br>
-      <input type="text" class="form-control" name="username" placeholder="Enter player name">
-      <button type="submit" class="btn btn-info">Submit</button>
-      <p>
-      </p>
+      <form action="/create" >
+        <label for="username">  <p class="font-weight-bold">Add player</p> </label><br>
+        <input type="text" class="form-control" name="username" placeholder="Enter player name">
+        <button type="submit" class="btn btn-info">Submit</button>
+      </form>
     </div>   
   </div>
 </div>
-</form>
 
+<p>
+</p>
 
 <div class="container">
-<div class="row">
-  <div class="col-sm-2">
-  Name
+  <div class="row">
+    <div class="col-sm-2">
+    Name
+    </div>
+    <div class="col-sm-2">
+    Goals count
+    </div>
+    <div class="col-sm-2">
+    Matches played
+    </div>
+    <div class="col-md-auto">
+    </div>
   </div>
-  <div class="col-sm-2">
-  Goals count
-  </div>
-  <div class="col-sm-2">
-  Matches played
-  </div>
-  <div class="col-md-auto">
-  </div>
-</div>
 </div>
 
 <p>
@@ -79,13 +80,78 @@
           <button type="submit" class="btn btn-dark btn-sm">Remove player</button>
         </form>
       </div>
-    </div>
+  </div>
   <% end %>
-
 </div>
 
+<p>
+</p>
 
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form action="/match_create" >
+        <label for="team_1_name">  <p class="font-weight-bold">Add match result</p> </label><br>
+        <input type="text" class="form-control" name="team_1_name" placeholder="Enter home team">
+        <p>
+        </p>
+        <input type="text" class="form-control" name="team_2_name" placeholder="Enter away team">
+        <p>
+        </p>
+        <input type="text" class="form-control" name="match_result" placeholder="Enter result">
+        <button type="submit" class="btn btn-info">Submit</button>
+      </form>
+    </div>   
+  </div>
+</div>
+
+<p>
+</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+    Home team
+    </div>
+    <div class="col-sm-2">
+    Away team
+    </div>
+    <div class="col-sm-2">
+    Score
+    </div>
+    <div class="col-md-auto">
     </div>
   </div>
 </div>
 
+<p>
+</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+    </div>
+  </div>
+  <% @match.each do |match| %>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= match.team_1_name %>
+      </div>
+
+      <div class="col-sm-2">
+        <%= match.team_2_name %>
+      </div>
+      <div class="col-sm-2">
+      <%= match.match_result %>
+      </div>
+      <div class="col-md-auto">
+
+        <form class="form-inline" action="/match_destroy" style="display: inline;">
+        <input type="hidden" name="match_id" value="<%= match.id %>">
+        <button type="submit" class="btn btn-outline-dark btn-sm">Remove match result</button>
+        </form>
+
+      </div>
+    </div>
+    <% end %>
+</div>

@@ -33,6 +33,8 @@ class UsersController < ApplicationController
     #@users = [user, user2, user3, user4, user5, user6, user6]
     
     @users = User.all.order(:created_at)
+    @match = Match.all.order(:created_at)
+   
   end
 
   def add_goal
@@ -75,5 +77,23 @@ class UsersController < ApplicationController
       redirect_to action: "index"
 
   end
+
+  def match_create 
+    match = Match.new
+    match.team_1_name = params["team_1_name"]
+    match.team_2_name = params["team_2_name"]
+    match.match_result = params["match_result"]
+    match.save
+        
+    redirect_to action: "index"
+  end
+    
+  def match_destroy
+    match = Match.find params["match_id"]
+    match.destroy!
+    
+    redirect_to action: "index"
+  end
+  
  
 end
