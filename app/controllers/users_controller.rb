@@ -37,6 +37,12 @@ class UsersController < ApplicationController
    
   end
 
+  def show_match
+
+    @match= Match.find params["match_id"]
+
+  end  
+
   def add_goal
     user = User.find params["user_id"]
     user.goals_count = user.goals_count + 1
@@ -95,5 +101,16 @@ class UsersController < ApplicationController
     redirect_to action: "index"
   end
   
+  def add_player_to_match
+    match = Match.find params["match_id"]
+    user = User.find params["user_id"]
+  
+    matches_user = MatchesUser.new
+    matches_user.match = match
+    matches_user.user = user
+    matches_user.save
+
+    redirect_to action: "index"
+  end
  
 end

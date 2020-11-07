@@ -19,4 +19,6 @@ Rails.application.routes.draw do
 
   get '/match_destroy', to: 'users#match_destroy'
 
+  get '/add_player_to_match', to: 'users#add_player_to_match'
+
 end

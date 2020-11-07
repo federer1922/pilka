@@ -4,7 +4,7 @@ class MatchesUsers < ActiveRecord::Migration[6.0]
       t.timestamps  
     end
 
-    add_reference :matches_users, :matches, foreign_key: { to_table: :matches_users }, null: false
-    add_reference :matches_users, :users, foreign_key: { to_table: :matches_users }, null: false
+    add_reference :matches_users, :match, foreign_key: { to_table: :matches }, null: false
+    add_reference :matches_users, :user, foreign_key: { to_table: :users }, null: false
   end
 end

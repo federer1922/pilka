@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(version: 2020_11_05_125131) do
   create_table "matches_users", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "matches_id", null: false
-    t.bigint "users_id", null: false
-    t.index ["matches_id"], name: "index_matches_users_on_matches_id"
-    t.index ["users_id"], name: "index_matches_users_on_users_id"
+    t.bigint "match_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["match_id"], name: "index_matches_users_on_match_id"
+    t.index ["user_id"], name: "index_matches_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,6 +40,6 @@ ActiveRecord::Schema.define(version: 2020_11_05_125131) do
     t.integer "match_count"
   end
 
-  add_foreign_key "matches_users", "matches_users", column: "matches_id"
-  add_foreign_key "matches_users", "matches_users", column: "users_id"
+  add_foreign_key "matches_users", "matches"
+  add_foreign_key "matches_users", "users"
 end
