@@ -11,6 +11,9 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find params["user_id"]
+    
+    user.matches_users.destroy_all
+
     user.destroy!
 
     redirect_to action: "index"
@@ -96,6 +99,9 @@ class UsersController < ApplicationController
     
   def match_destroy
     match = Match.find params["match_id"]
+
+    match.matches_users.destroy_all
+
     match.destroy!
     
     redirect_to action: "index"

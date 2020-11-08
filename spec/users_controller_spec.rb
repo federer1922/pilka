@@ -4,8 +4,17 @@ describe UsersController, type: :controller do
   render_views
 
   it "deletes user" do
-    user = User.new(username: "Olaf", goals_count: 0, match_count: 0)
+    
+    match = Match.new(team_1_name: "Lech", team_2_name: "Warta", match_result: "0:0")
+    match.save!
+
+    user = User.new(username: "Olaf", goals_count: 0, match_count: 1)
     user.save!
+
+    matches_user = MatchesUser.new
+    matches_user.user = user
+    matches_user.match = match
+    matches_user.save!
 
     get :destroy, params: { user_id: user.id }
 
@@ -47,5 +56,24 @@ describe UsersController, type: :controller do
 
     expect(user.reload.match_count).to eq 0
   end
+
+  it "deletes match" do
+    match = Match.new(team_1_name: "Lech", team_2_name: "Warta", match_result: "0:0")
+    match.save!
+
+    user = User.new(username: "Olaf", goals_count: 0, match_count: 1)
+    user.save!
+
+    matches_user = MatchesUser.new
+    matches_user.user = user
+    matches_user.match = match
+    matches_user.save!
+
+
+    get :match_destroy, params: { match_id: match.id }
+
+    expect(Match.count).to eq 0
+  end
+
 
 end
