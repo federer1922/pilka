@@ -37,7 +37,7 @@ rails s
 
 user = User.new
 user.username = "Arek"
-user.safe
+user.save
 user # wyswietla uzytkownika
 
 

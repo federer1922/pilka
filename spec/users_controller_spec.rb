@@ -69,7 +69,6 @@ describe UsersController, type: :controller do
     matches_user.match = match
     matches_user.save!
 
-
     get :match_destroy, params: { match_id: match.id }
 
     expect(Match.count).to eq 0

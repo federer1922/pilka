@@ -37,7 +37,6 @@ class UsersController < ApplicationController
     
     @users = User.all.order(:created_at)
     @match = Match.all.order(:created_at)
-   
   end
 
   def show_match
@@ -93,19 +92,21 @@ class UsersController < ApplicationController
     match.team_2_name = params["team_2_name"]
     match.match_result = params["match_result"]
     match.save
+            
+    redirect_to action: "index"
+  end
+        
+  def match_destroy
+    match = Match.find params["match_id"]
+    
+    match.matches_users.destroy_all
+    
+    match.destroy!
         
     redirect_to action: "index"
   end
-    
-  def match_destroy
-    match = Match.find params["match_id"]
 
-    match.matches_users.destroy_all
 
-    match.destroy!
-    
-    redirect_to action: "index"
-  end
   
   def add_player_to_match
     match = Match.find params["match_id"]
