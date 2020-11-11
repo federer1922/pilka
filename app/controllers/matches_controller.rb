@@ -17,9 +17,15 @@ class MatchesController < ApplicationController
     
     match.destroy!
         
-    redirect_to action: "index"
+    redirect_to action: "index", controller: "users"
   end
 
+  def show
+    @match = Match.find params["match_id"]
+    @players = @match.users
+    #@players = @match.matches_users
+
+  end
  
 
 end

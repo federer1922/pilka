@@ -36,14 +36,9 @@ class UsersController < ApplicationController
     #@users = [user, user2, user3, user4, user5, user6, user6]
     
     @users = User.all.order(:created_at)
-    @match = Match.all.order(:created_at)
+    @matches = Match.all.order(:created_at)
+    @players = MatchesUser.all.order(:created_at)
   end
-
-  def show_match
-
-    @match= Match.find params["match_id"]
-
-  end  
 
   def add_goal
     user = User.find params["user_id"]
@@ -85,39 +80,37 @@ class UsersController < ApplicationController
       redirect_to action: "index"
 
   end
-
-  def match_create 
-    match = Match.new
-    match.team_1_name = params["team_1_name"]
-    match.team_2_name = params["team_2_name"]
-    match.match_result = params["match_result"]
-    match.save
-            
-    redirect_to action: "index"
-  end
-        
-  def match_destroy
-    match = Match.find params["match_id"]
-    
-    match.matches_users.destroy_all
-    
-    match.destroy!
-        
-    redirect_to action: "index"
-  end
-
-
+  
   
   def add_player_to_match
     match = Match.find params["match_id"]
     user = User.find params["user_id"]
-  
-    matches_user = MatchesUser.new
-    matches_user.match = match
-    matches_user.user = user
-    matches_user.save
 
-    redirect_to action: "index"
+    player = MatchesUser.where(match: match, user: user).first
+    if player.nil?
+      player = MatchesUser.new
+      player.match = match
+      player.user = user
+      player.save
+
+      redirect_to action: "index"
+    else
+      flash[:alert] = "Player already added"
+      redirect_to action: "index"
+      
+    end
   end
- 
+
+  def destroy_player
+    match = Match.find params["match_id"]
+    player = MatchesUser.find params["player_id"]
+    
+    player.destroy!
+    
+    
+    
+    redirect_to action: "index"
+  
+  end
+
 end

@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+    Home team
+    </div>
+    <div class="col-sm-2">
+    Away team
+    </div>
+    <div class="col-sm-2">
+    Score
+    </div>
+    <div class="col-md-auto">
+    </div>
+  </div>
+</div>
+
+<p>
+</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <%= @match.team_1_name %>
+    </div>
+    <div class="col-sm-2">
+      <%= @match.team_2_name %>
+    </div>
+    <div class="col-sm-2">
+      <%= @match.match_result %>
+    </div>
+  </div>
+
+<p>
+</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+    </div>
+  </div>
+  <% @players.each do |player| %>
+  <div class="row">
+    <div class="col-sm-2">
+      <%= player.username %>
+    </div>
+  </div>
+  <% end %>
+</div> 
+
+
+

@@ -15,10 +15,14 @@ Rails.application.routes.draw do
 
   get '/destroy', to: 'users#destroy'
 
-  get '/match_create', to: 'users#match_create'
+  get '/match_create', to: 'matches#match_create'
 
-  get '/match_destroy', to: 'users#match_destroy'
+  get '/match_destroy', to: 'matches#match_destroy'
 
   get '/add_player_to_match', to: 'users#add_player_to_match'
+
+  get '/match_show', to: 'matches#show'
+
+  get 'destroy_player', to: 'users#destroy_player'
 
 end
