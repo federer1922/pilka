@@ -22,8 +22,10 @@ class MatchesController < ApplicationController
 
   def show
     @match = Match.find params["match_id"]
-    @players = @match.users
+    @players = @match.matches_users
     #@players = @match.matches_users
+    @other_users = User.all.to_a - @players.map { |player| player.user }
+ 
 
   end
  

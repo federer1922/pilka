@@ -146,42 +146,14 @@
       </div>
       <div class="col-md-auto">
 
-        <form class="form-inline" action="/add_player_to_match" style="display: inline;">
-          <input type="hidden" name="match_id" value="<%= match.id %>">
-          <div class="input-group">
-          <select class="custom-select" name="user_id">
-            <option selected>Choose...</option>
-            <% @users.each do |user| %>
-            <option value="<%= user.id %>"><%= user.username %></option>
-            <% end %>
-          </select>
-          <div class="input-group-append">
-          <button type="submit" class="btn btn-outline-dark btn-sm">Add player</button>
-          </div>
-          </div>
-        </form>
-
-        <form class="form-inline" action="/destroy_player" style="display: inline;">
-          <input type="hidden" name="match_id" value="<%= match.id %>">
-          <div class="input-group">
-          <select class="custom-select" name="player_id">
-            <option selected>Choose...</option>
-            <% @players.each do |player| %>
-            <option value="<%= player.match.id %>"><%= player.user.username %></option>
-            <% end %>
-          </select>
-          <div class="input-group-append">
-          <button type="submit" class="btn btn-outline-dark btn-sm">Remove player</button>
-          </div>
-          </div>
-        </form>
+        
 
         <form class="form-inline" action="/match_destroy" style="display: inline;">
         <input type="hidden" name="match_id" value="<%= match.id %>">
         <button type="submit" class="btn btn-outline-dark btn-sm">Remove match result</button>
         </form>
 
-        <%= link_to "Show", match_show_path(match_id: match.id), method: "get", class: "btn btn-primary" %>
+        <%= link_to "Show", match_show_path(match_id: match.id), method: "get", class: "btn btn-primary", target: "_blank" %>
         
 
       </div>

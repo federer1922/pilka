@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
   def create 
+    
     user = User.new
     user.username = params["username"]
     user.goals_count = 0
     user.match_count = 0
     user.save
-    
-    redirect_to action: "index"
+
+    redirect_to action: "index"    
   end
 
   def destroy
@@ -93,10 +94,10 @@ class UsersController < ApplicationController
       player.user = user
       player.save
 
-      redirect_to action: "index"
+      redirect_to action: "show", controller: "matches", match_id: match.id
     else
       flash[:alert] = "Player already added"
-      redirect_to action: "index"
+      redirect_to action: "show", controller: "matches", match_id: match.id
       
     end
   end
@@ -109,7 +110,7 @@ class UsersController < ApplicationController
     
     
     
-    redirect_to action: "index"
+    redirect_to action: "show", controller: "matches", match_id: match.id
   
   end
 
