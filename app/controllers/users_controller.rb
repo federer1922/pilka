@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
   def create 
-    
+
     user = User.new
     user.username = params["username"]
     user.goals_count = 0
     user.match_count = 0
     user.save
 
-    redirect_to action: "index"    
+    redirect_to action: "index"  
   end
 
   def destroy
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   def index
     #user = User.new
-    #user.username = "Arek"z
+    #user.username = "Arek"
     #user2 = User.new
     #user2.username = "Pawel"
     #user3 = User.new

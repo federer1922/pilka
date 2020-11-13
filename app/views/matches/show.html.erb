@@ -19,10 +19,6 @@
 
 <div class="container">
   <div class="row">
-    <div class="col">
-    </div>
-  </div>
-  <div class="row">
     <div class="col-sm-2">
       <%= @match.team_1_name %>
     </div>
@@ -32,52 +28,64 @@
     <div class="col-sm-2">
       <%= @match.match_result %>
     </div>
+    <div class="col-md-auto">
+    </div>
   </div>
+
+<p>
+</p>
+
+<div class="container"> 
+  <% @players.each do |player| %>
+  <div class="row">
+    <div class="col-sm-2">
+      <%= player.username %>
+    </div>
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-2">
+    </div>
+    <div class="col-md-auto">
+      <form class="form-inline" action="/destroy_player" style="display: inline;">
+        <input type="hidden" name="match_id" value="<%= @match.id %>">
+        <input type="hidden" name="player_id" value="<%= player.id %>">
+        <button type="submit" class="btn btn-outline-dark btn-sm">Remove player</button>
+      </form>
+    </div>
+  </div>
+  <% end %>
+</div> 
 
 <p>
 </p>
 
 <div class="container">
   <div class="row">
-    <div class="col">
-    </div>
-  </div>
-  <% @players.each do |player| %>
-  <div class="row">
     <div class="col-sm-2">
-      <%= player.username %>
+    </div>
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-2"> 
+    </div>
+    <div class="col-md-auto">
+      <form class="form-inline" action="/add_player_to_match" style="display: inline;">
+        <input type="hidden" name="match_id" value="<%= @match.id %>">
+        <div class="input-group">
+        <select class="custom-select" name="user_id">
+          <option selected>Choose...</option>
+          <% @other_users.each do |user| %>
+            <option value="<%= user.id %>"><%= user.username %></option>
+          <% end %>
+        </select>
+        <div class="input-group-append">
+        <button type="submit" class="btn btn-outline-dark btn-sm">Add player</button>
+        </div>
+        </div>
+      </form>
     </div>
   </div>
-  <% end %>
-</div> 
+</div>
 
-    <form class="form-inline" action="/add_player_to_match" style="display: inline;">
-      <input type="hidden" name="match_id" value="<%= @match.id %>">
-      <div class="input-group">
-      <select class="custom-select" name="user_id">
-        <option selected>Choose...</option>
-        <% @other_users.each do |user| %>
-        <option value="<%= user.id %>"><%= user.username %></option>
-        <% end %>
-      </select>
-      <div class="input-group-append">
-      <button type="submit" class="btn btn-outline-dark btn-sm">Add player</button>
-      </div>
-      </div>
-    </form>
+    
 
-    <form class="form-inline" action="/destroy_player" style="display: inline;">
-      <input type="hidden" name="match_id" value="<%= @match.id %>">
-      <div class="input-group">
-      <select class="custom-select" name="player_id">
-        <option selected>Choose...</option>
-        <% @players.each do |player| %>
-        <option value="<%= player.id %>"><%= player.username %></option>
-        <% end %>
-      </select>
-      <div class="input-group-append">
-      <button type="submit" class="btn btn-outline-dark btn-sm">Remove player</button>
-      </div>
-      </div>
-    </form>
-
+  

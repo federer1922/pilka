@@ -18,7 +18,7 @@ describe UsersController, type: :controller do
     match = Match.new(team_1_name: "Lech", team_2_name: "Warta", match_result: "0:0")
     match.save!
 
-    user = User.new(username: "Olaf", goals_count: 0, match_count: 1)
+    user = User.new(username: "Olaf", goals_count: 0, match_count: 0)
     user.save!
 
     matches_user = MatchesUser.new
