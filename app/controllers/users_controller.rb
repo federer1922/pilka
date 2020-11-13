@@ -1,22 +1,27 @@
 class UsersController < ApplicationController
   def create 
-
     user = User.new
+    user.username = params["username"]
+    
+    user.username = User.where(username: user.username).first
+    
+    if user.username.nil?
     user.username = params["username"]
     user.goals_count = 0
     user.match_count = 0
     user.save
 
-    redirect_to action: "index"  
+    redirect_to action: "index" 
+    else
+      flash[:alert] = "Player already added" 
+      redirect_to action: "index"
+    end
   end
 
   def destroy
     user = User.find params["user_id"]
-    
     user.matches_users.destroy_all
-
     user.destroy!
-
     redirect_to action: "index"
   end
 

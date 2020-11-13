@@ -8,11 +8,10 @@ describe MatchesController, type: :controller do
     match = Match.new(team_1_name: "Lech", team_2_name: "Warta", match_result: "0:0")
     match.save!
 
-    get :match_create, params: { team_1: match.team_1_name, team_2: match.team_2_name, result: match.match_result}
-
     expect(match.team_1_name).to eq "Lech"
     expect(match.team_2_name).to eq "Warta"
     expect(match.match_result). to eq "0:0"
+    expect(Match.count).to eq 1
   end
 
   it "deletes match" do

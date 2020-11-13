@@ -7,10 +7,11 @@ describe UsersController, type: :controller do
 
     user = User.new(username: "Olaf", goals_count: 0, match_count: 0)
     user.save
-    
+     
     get :create, params: { username: user.username }
-
+   
     expect(user.username). to eq "Olaf"
+    expect(User.count).to eq 1
   end
 
   it "deletes user" do
