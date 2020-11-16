@@ -3,15 +3,19 @@ require "rails_helper"
 describe UsersController, type: :controller do
   render_views
 
-  it "creates username" do
-
-    user = User.new(username: "Olaf", goals_count: 0, match_count: 0)
-    user.save
-     
-    get :create, params: { username: user.username }
+  it "creates user" do
+    get :create, params: { username: "Olaf" }
    
+    user = User.first
     expect(user.username). to eq "Olaf"
     expect(User.count).to eq 1
+  end
+
+  it "does not create a user without the username" do
+    get :create, params: { username: "" }
+
+    expect(flash[:alert]).to be_present
+    expect(User.count).to eq 0
   end
 
   it "deletes user" do
