@@ -21,10 +21,10 @@ describe MatchesController, type: :controller do
     user = User.new(username: "Olaf", goals_count: 0, match_count: 1)
     user.save!
 
-    matches_user = MatchesUser.new
-    matches_user.user = user
-    matches_user.match = match
-    matches_user.save!
+    player = Player.new
+    player.user = user
+    player.match = match
+    player.save!
 
     get :match_destroy, params: { match_id: match.id }
 
@@ -37,14 +37,14 @@ describe MatchesController, type: :controller do
     user = User.new(username: "Olaf", goals_count: 0, match_count: 0)
     user.save!
 
-    matches_user = MatchesUser.new
-    matches_user.user = user
-    matches_user.match = match
-    matches_user.save!
+    player = Player.new
+    player.user = user
+    player.match = match
+    player.save!
 
     get :show, params: { match_id: match.id }
 
-    expect(Match.count). to eq 1
+    expect(response).to have_http_status(200)
 
   end
 

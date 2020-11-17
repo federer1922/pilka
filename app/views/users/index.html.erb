@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col">
       <form action="/create" >
-        <label for="username">  <p class="font-weight-bold">Add player</p> </label><br>
+        <label for="username">  <p class="font-weight-bold">Add user</p> </label><br>
         <input type="text" class="form-control" name="username" placeholder="Enter player name">
         <button type="submit" class="btn btn-info">Submit</button>
       </form>
@@ -43,12 +43,11 @@
       <div class="col-sm-2">
         <%= user.username %>
       </div>
-
       <div class="col-sm-2">
         <%= user.goals_count %>
       </div>
       <div class="col-sm-2">
-      <%= user.match_count %>
+        <%= user.match_count %>
       </div>
       <div class="col-md-auto">
 
@@ -77,7 +76,7 @@
           <button type="submit" class="btn btn-dark btn-sm">Remove player</button>
         </form>
       </div>
-  </div>
+    </div>
   <% end %>
 </div>
 
@@ -134,25 +133,18 @@
       <div class="col-sm-2">
         <%= match.team_1_name %>
       </div>
-
       <div class="col-sm-2">
         <%= match.team_2_name %>
       </div>
       <div class="col-sm-2">
-      <%= match.match_result %>
+        <%= match.match_result %>
       </div>
       <div class="col-md-auto">
-
-        
-
         <form class="form-inline" action="/match_destroy" style="display: inline;">
         <input type="hidden" name="match_id" value="<%= match.id %>">
         <button type="submit" class="btn btn-outline-dark btn-sm">Remove match result</button>
         </form>
-
-        <%= link_to "Match details", match_show_path(match_id: match.id), method: "get", class: "btn btn-primary", target: "_blank" %>
-        
-
+        <%= link_to "Match details", match_show_path(match_id: match.id), method: "get", class: "btn btn-primary", target: "_blank" %>   
       </div>
     </div>
     <% end %>

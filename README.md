@@ -65,7 +65,6 @@ def new
 User.all.map { |user| user.match_count = 0; user.save }  ustawianie match count dla kazdego uzytkownika
 
 
- przyciski, testy do kazdej akcji,do podwojnego dodawania test
- naprawic usuwanie playerow 
+dodawanie goli do playera i sumowanie userowi
 
 

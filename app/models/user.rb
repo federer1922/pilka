@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
-  has_many :matches_users 
-  has_many :matches, through: :matches_users
+  has_many :players 
+  has_many :matches, through: :players
 
   validates :username, presence: true
 

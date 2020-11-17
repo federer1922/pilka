@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find params["user_id"]
-    user.matches_users.destroy_all
+    user.players.destroy_all
     user.destroy!
     redirect_to action: "index"
   end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     
     @users = User.all.order(:created_at)
     @matches = Match.all.order(:created_at)
-    @players = MatchesUser.all.order(:created_at)
+    @players = Player.all.order(:created_at)
   end
 
   def add_goal
@@ -93,9 +93,9 @@ class UsersController < ApplicationController
     match = Match.find params["match_id"]
     user = User.find params["user_id"]
 
-    player = MatchesUser.where(match: match, user: user).first
+    player = Player.where(match: match, user: user).first
     if player.nil?
-      player = MatchesUser.new
+      player = Player.new
       player.match = match
       player.user = user
       player.save
@@ -110,7 +110,7 @@ class UsersController < ApplicationController
 
   def destroy_player
     match = Match.find params["match_id"]
-    player = MatchesUser.find params["player_id"]
+    player = Player.find params["player_id"]
     
     player.destroy!
     

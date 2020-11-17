@@ -13,7 +13,7 @@ class MatchesController < ApplicationController
   def match_destroy
     match = Match.find params["match_id"]
     
-    match.matches_users.destroy_all
+    match.players.destroy_all
     
     match.destroy!
         
@@ -22,12 +22,11 @@ class MatchesController < ApplicationController
 
   def show
     @match = Match.find params["match_id"]
-    @players = @match.matches_users
-    #@players = @match.matches_users
+    @players = @match.players
+    #@players = @match.players
     @other_users = User.all.to_a - @players.map { |player| player.user }
  
 
   end
  
-
 end

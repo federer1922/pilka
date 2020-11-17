@@ -26,10 +26,10 @@ describe UsersController, type: :controller do
     user = User.new(username: "Olaf", goals_count: 0, match_count: 0)
     user.save!
 
-    matches_user = MatchesUser.new
-    matches_user.user = user
-    matches_user.match = match
-    matches_user.save!
+    player = Player.new
+    player.user = user
+    player.match = match
+    player.save!
 
     get :destroy, params: { user_id: user.id }
 
@@ -80,14 +80,14 @@ describe UsersController, type: :controller do
     user = User.new(username: "Olaf", goals_count: 0, match_count: 1)
     user.save!
 
-    player = MatchesUser.new
+    player = Player.new
     player.user = user
     player.match = match
     player.save!
 
     get :add_player_to_match, params: { match_id: match.id, user_id: user.id }
 
-    expect(MatchesUser.count).to eq 1
+    expect(Player.count).to eq 1
   end
 
   it "destroys player" do
@@ -95,14 +95,14 @@ describe UsersController, type: :controller do
     match = Match.new(team_1_name: "Lech", team_2_name: "Warta", match_result: "0:0")
     match.save
     
-    player = MatchesUser.new
+    player = Player.new
     player.user = user
     player.match = match
     player.save!
 
     get :destroy_player, params: { match_id: match.id, player_id: player.id }
     
-    expect(MatchesUser.count).to eq 0
+    expect(Player.count).to eq 0
   end
 
 end

@@ -1,7 +1,8 @@
 class Match < ApplicationRecord
 
-  has_many :matches_users 
-  has_many :users, through: :matches_users
-      
+  has_many :players 
+  has_many :users, through: :players
+ 
+
 end
     

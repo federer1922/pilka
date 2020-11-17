@@ -31,28 +31,49 @@
     <div class="col-md-auto">
     </div>
   </div>
+</div>
+
+<p>
+</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+    Playername
+    </div>
+    <div class="col-sm-2">
+    Away team
+    </div>
+    <div class="col-sm-2">
+    Score
+    </div>
+    <div class="col-md-auto">
+    </div>
+  </div>
+</div>
 
 <p>
 </p>
 
 <div class="container"> 
+
   <% @players.each do |player| %>
-  <div class="row">
-    <div class="col-sm-2">
-      <%= player.username %>
+    <div class="row"> 
+      <div class="col-sm-2">
+        <%= player.username %>
+      </div>
+      <div class="col-sm-2">
+      </div>
+      <div class="col-sm-2"> 
+      </div>
+      <div class="col-md-auto">
+        <form class="form-inline" action="/destroy_player" style="display: inline;">
+          <input type="hidden" name="match_id" value="<%= @match.id %>">
+          <input type="hidden" name="player_id" value="<%= player.id %>">
+          <button type="submit" class="btn btn-outline-dark btn-sm">Remove player</button>
+        </form>
+      </div>
     </div>
-    <div class="col-sm-2">
-    </div>
-    <div class="col-sm-2">
-    </div>
-    <div class="col-md-auto">
-      <form class="form-inline" action="/destroy_player" style="display: inline;">
-        <input type="hidden" name="match_id" value="<%= @match.id %>">
-        <input type="hidden" name="player_id" value="<%= player.id %>">
-        <button type="submit" class="btn btn-outline-dark btn-sm">Remove player</button>
-      </form>
-    </div>
-  </div>
   <% end %>
 </div> 
 
