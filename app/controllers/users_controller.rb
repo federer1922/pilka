@@ -98,6 +98,7 @@ class UsersController < ApplicationController
       player = Player.new
       player.match = match
       player.user = user
+      player.goals_scored = 0
       player.save
 
       redirect_to action: "show", controller: "matches", match_id: match.id

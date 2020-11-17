@@ -26,7 +26,15 @@ class MatchesController < ApplicationController
     #@players = @match.players
     @other_users = User.all.to_a - @players.map { |player| player.user }
  
+  end
 
+  def add_goal_scored
+    match = Match.find params["match_id"]
+    player = Player.find params["player_id"]
+    player.goals_scored = player.goals_scored + 1
+    player.save 
+
+    redirect_to action: "show", match_id: match.id
   end
  
 end
