@@ -16,14 +16,14 @@ class User < ApplicationRecord
   
   def validate_goals_count
     if goals_count < 0
-      errors.add(:goals_count, 'cant be less than 0')
+      errors.add(:goals_count, 'can not be less than 0')
     end
   end
  
   validate :validate_match_count
   def validate_match_count
     if match_count < 0
-      errors.add(:match_count, 'cant be less than 0')
+      errors.add(:match_count, 'can not be less than 0')
     end
   end
 

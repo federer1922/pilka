@@ -5,7 +5,6 @@ class UsersController < ApplicationController
     if user_already_in_database.nil?
       user = User.new
       user.username = params["username"]
-      user.goals_count = 0
       user.match_count = 0
       if user.save
         redirect_to action: "index" 
@@ -49,10 +48,11 @@ class UsersController < ApplicationController
 
   def add_goal
     user = User.find params["user_id"]
+   
     user.goals_count = user.goals_count + 1
     user.save 
-
     redirect_to action: "index"
+
   end
 
   def subtract_goal

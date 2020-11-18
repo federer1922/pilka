@@ -74,6 +74,12 @@
           <input type="hidden" name="player_id" value="<%= player.id %>">
           <button type="submit" class="btn btn-success btn-sm">Add goal</button>
         </form>
+
+        <form class="form-inline" action="/subtract_goal_scored" style="display: inline;">
+          <input type="hidden" name="match_id" value="<%= @match.id %>">
+          <input type="hidden" name="player_id" value="<%= player.id %>">
+          <button type="submit" class="btn btn-danger btn-sm">Subtract goal</button>
+        </form>
         
         <form class="form-inline" action="/destroy_player" style="display: inline;">
           <input type="hidden" name="match_id" value="<%= @match.id %>">

@@ -22,17 +22,36 @@ class MatchesController < ApplicationController
 
   def show
     @match = Match.find params["match_id"]
-    @players = @match.players
+    @players = @match.players.order(:created_at).to_a
     #@players = @match.players
     @other_users = User.all.to_a - @players.map { |player| player.user }
  
   end
 
   def add_goal_scored
+    
     match = Match.find params["match_id"]
     player = Player.find params["player_id"]
     player.goals_scored = player.goals_scored + 1
+    user = player.user
+    user.goals_count = user.goals_count + 1
+    user.save
     player.save 
+
+    redirect_to action: "show", match_id: match.id
+  end
+
+  def subtract_goal_scored
+    match = Match.find params["match_id"]
+    player = Player.find params["player_id"]
+    player.goals_scored = player.goals_scored - 1
+    user = player.user
+    user.goals_count = user.goals_count - 1
+    user.save
+    if player.save
+    else
+      flash[:alert] = player.errors.full_messages.first 
+    end
 
     redirect_to action: "show", match_id: match.id
   end

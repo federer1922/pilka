@@ -48,4 +48,23 @@ describe MatchesController, type: :controller do
 
   end
 
+  it "adds goal scored" do
+    match = Match.new(team_1_name: "Lech", team_2_name: "Warta", match_result: "0:0")
+    match.save!
+    
+    user = User.new(username: "Olaf", goals_count: 0, match_count: 0)
+    user.save!
+    
+    player = Player.new
+    player.match = match
+    player.user = user
+    player.goals_scored = 0
+    player.save  
+
+    get :add_goal_scored, params: {player_id: player.id, match_id: match.id}
+    
+    expect(player.reload.goals_scored).to eq 1
+    expect(user.reload.goals_count). to eq 1
+  end
+
 end
