@@ -7,7 +7,7 @@
     <div class="col">
       <form action="/create" >
         <label for="username">  <p class="font-weight-bold">Add user</p> </label><br>
-        <input type="text" class="form-control" name="username" placeholder="Enter player name">
+        <input type="text" class="form-control" name="username" placeholder="Enter username">
         <button type="submit" class="btn btn-info">Submit</button>
       </form>
     </div>   
@@ -50,16 +50,6 @@
         <%= user.match_count %>
       </div>
       <div class="col-md-auto">
-
-        <form class="form-inline" action="/add_goal" style="display: inline;">
-          <input type="hidden" name="user_id" value="<%= user.id %>">
-          <button type="submit" class="btn btn-success btn-sm">Add goal</button>
-        </form>
-
-        <form class="form-inline" action="/subtract_goal" style="display: inline;">
-          <input type="hidden" name="user_id" value="<%= user.id %>">
-          <button type="submit" class="btn btn-danger btn-sm">Subtract goal</button>
-        </form>
         
         <form class="form-inline" action="/add_match" style="display: inline;">
           <input type="hidden" name="user_id" value="<%= user.id %>">
@@ -73,7 +63,7 @@
 
         <form class="form-inline" action="/destroy" style="display: inline;">
           <input type="hidden" name="user_id" value="<%= user.id %>">
-          <button type="submit" class="btn btn-dark btn-sm">Remove player</button>
+          <button type="submit" class="btn btn-dark btn-sm">Remove user</button>
         </form>
       </div>
     </div>

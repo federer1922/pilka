@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     if user_already_in_database.nil?
       user = User.new
       user.username = params["username"]
+      user.goals_count = 0
       user.match_count = 0
       if user.save
         redirect_to action: "index" 
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
         redirect_to action: "index"
       end
     else
-      flash[:alert] = "Player already added" 
+      flash[:alert] = "User already added" 
       redirect_to action: "index"
     end
   end
@@ -44,27 +45,6 @@ class UsersController < ApplicationController
     @users = User.all.order(:created_at)
     @matches = Match.all.order(:created_at)
     @players = Player.all.order(:created_at)
-  end
-
-  def add_goal
-    user = User.find params["user_id"]
-   
-    user.goals_count = user.goals_count + 1
-    user.save 
-    redirect_to action: "index"
-
-  end
-
-  def subtract_goal
-    user = User.find params["user_id"]
-    user.goals_count = user.goals_count - 1
-    if user.save
-      #proceed
-    else
-      flash[:alert] = user.errors.full_messages.first 
-    end
-
-    redirect_to action: "index"
   end
   
   def add_match
@@ -99,6 +79,8 @@ class UsersController < ApplicationController
       player.match = match
       player.user = user
       player.goals_scored = 0
+      user.match_count = user.match_count + 1
+      user.save
       player.save
 
       redirect_to action: "show", controller: "matches", match_id: match.id
@@ -112,10 +94,7 @@ class UsersController < ApplicationController
   def destroy_player
     match = Match.find params["match_id"]
     player = Player.find params["player_id"]
-    
     player.destroy!
-    
-    
     
     redirect_to action: "show", controller: "matches", match_id: match.id
   

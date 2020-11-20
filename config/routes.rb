@@ -5,10 +5,6 @@ Rails.application.routes.draw do
 
   get '/create', to: 'users#create'
 
-  get '/add_goal', to: 'users#add_goal'
-
-  get '/subtract_goal', to: 'users#subtract_goal'
-
   get '/add_match', to: 'users#add_match'
 
   get '/subtract_match', to: 'users#subtract_match'

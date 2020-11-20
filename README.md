@@ -67,4 +67,11 @@ User.all.map { |user| user.match_count = 0; user.save }  ustawianie match count 
 
 dodawanie goli do playera i sumowanie userowi
 
+Player.all- obiekty i dane
+Player.pluck(:goals_scored)- same dane
+
+map- dla kazdego wykonuje nowy kod, tworzac nowa tablice(stara pozostaje niezmieniona)
+map!- zastepuje stara tablice
+save!- przy false blad wyskakuje 
+puts- wyswietlanie na konsoli
 
