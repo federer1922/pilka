@@ -5,10 +5,6 @@ Rails.application.routes.draw do
 
   get '/create', to: 'users#create'
 
-  get '/add_match', to: 'users#add_match'
-
-  get '/subtract_match', to: 'users#subtract_match'
-
   get '/destroy', to: 'users#destroy'
 
   get '/match_create', to: 'matches#match_create'

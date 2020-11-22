@@ -50,20 +50,9 @@
         <%= user.match_count %>
       </div>
       <div class="col-md-auto">
-        
-        <form class="form-inline" action="/add_match" style="display: inline;">
-          <input type="hidden" name="user_id" value="<%= user.id %>">
-          <button type="submit" class="btn btn-primary btn-sm">Add match</button>
-        </form>
-
-        <form class="form-inline" action="/subtract_match" style="display: inline;">
-          <input type="hidden" name="user_id" value="<%= user.id %>">
-          <button type="submit" class="btn btn-warning btn-sm">Subtract match</button>
-        </form>
-
         <form class="form-inline" action="/destroy" style="display: inline;">
           <input type="hidden" name="user_id" value="<%= user.id %>">
-          <button type="submit" class="btn btn-dark btn-sm">Remove user</button>
+          <button type="submit" class="btn btn-outline-dark btn-sm">Remove user</button>
         </form>
       </div>
     </div>

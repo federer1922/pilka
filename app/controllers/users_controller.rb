@@ -47,28 +47,6 @@ class UsersController < ApplicationController
     @players = Player.all.order(:created_at)
   end
   
-  def add_match
-    user = User.find params["user_id"]
-    user.match_count = user.match_count + 1
-    user.save 
-    
-    redirect_to action: "index"
-  end  
-
-  def subtract_match
-    user = User.find params["user_id"]
-    user.match_count = user.match_count - 1
-    if user.save
-      #proceed
-    else
-      flash[:alert] = user.errors.full_messages.first
-
-    end
-      redirect_to action: "index"
-
-  end
-  
-  
   def add_player_to_match
     match = Match.find params["match_id"]
     user = User.find params["user_id"]
@@ -80,8 +58,8 @@ class UsersController < ApplicationController
       player.user = user
       player.goals_scored = 0
       user.match_count = user.match_count + 1
-      user.save!
-      player.save!
+      user.save
+      player.save
 
       redirect_to action: "show", controller: "matches", match_id: match.id
     else
@@ -94,8 +72,10 @@ class UsersController < ApplicationController
   def destroy_player
     player = Player.find params["player_id"]
     match = Match.find params["match_id"]
-    #user.match_count = user.match_count - 1
-
+    user = player.user
+    user.match_count = user.match_count - 1
+    user.goals_count = user.goals_count - player.goals_scored
+    user.save
     player.destroy!
     
     redirect_to action: "show", controller: "matches", match_id: match.id

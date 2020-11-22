@@ -53,6 +53,53 @@ def new
    binding.pry zatrzymywanie kodu w konsoli
    
 
+ZARCHIWIZOWANE AKCJE KONTROLERA:
+
+def add_match
+    user = User.find params["user_id"]
+    user.match_count = user.match_count + 1
+    user.save 
+    
+    redirect_to action: "index"
+  end  
+
+  def subtract_match
+    user = User.find params["user_id"]
+    user.match_count = user.match_count - 1
+    if user.save
+      #proceed
+    else
+      flash[:alert] = user.errors.full_messages.first
+
+    end
+      redirect_to action: "index"
+
+  end
+
+ZARCHIWIZOWANE TESTY:
+
+
+it "adds match" do
+    user = User.new(username: "Olaf", goals_count: 0, match_count: 0)
+    user.save!
+
+    get :add_match, params: { user_id: user.id }
+
+    expect(user.reload.match_count).to eq 1
+  end
+
+  it "subtracts match" do
+    user = User.new(username: "Olaf", goals_count: 0, match_count: 1)
+    user.save!
+
+    get :subtract_match, params: { user_id: user.id }
+
+    expect(user.reload.match_count).to eq 0
+  end
+
+KONIEC
+
+
    git status
    git add -A
    git commit -am "lalala"

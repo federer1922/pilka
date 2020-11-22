@@ -69,4 +69,43 @@ describe MatchesController, type: :controller do
     expect(user.reload.goals_count). to eq 1
   end
 
+  it "subracts goal scored" do
+    match = Match.new(team_1_name: "Lech", team_2_name: "Warta", match_result: "0:0")
+    match.save!
+    
+    user = User.new(username: "Olaf", goals_count: 4, match_count: 0)
+    user.save!
+    
+    player = Player.new
+    player.match = match
+    player.user = user
+    player.goals_scored = 3
+    player.save!
+
+    get :subtract_goal_scored, params: {player_id: player.id, match_id: match.id}
+    
+    expect(player.reload.goals_scored).to eq 2
+    expect(user.reload.goals_count). to eq 3
+  end
+
+  it "does not subracts goal from goals count if goals scored 0" do
+    match = Match.new(team_1_name: "Lech", team_2_name: "Warta", match_result: "0:0")
+    match.save!
+    
+    user = User.new(username: "Olaf", goals_count: 4, match_count: 0)
+    user.save!
+    
+    player = Player.new
+    player.match = match
+    player.user = user
+    player.goals_scored = 1
+    player.save!
+
+    get :subtract_goal_scored, params: {player_id: player.id, match_id: match.id}
+    get :subtract_goal_scored, params: {player_id: player.id, match_id: match.id}
+    
+    expect(player.reload.goals_scored).to eq 0
+    expect(user.reload.goals_count). to eq 3
+  end
+
 end
