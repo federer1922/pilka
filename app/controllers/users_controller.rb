@@ -80,8 +80,8 @@ class UsersController < ApplicationController
       player.user = user
       player.goals_scored = 0
       user.match_count = user.match_count + 1
-      user.save
-      player.save
+      user.save!
+      player.save!
 
       redirect_to action: "show", controller: "matches", match_id: match.id
     else
@@ -92,12 +92,13 @@ class UsersController < ApplicationController
   end
 
   def destroy_player
-    match = Match.find params["match_id"]
     player = Player.find params["player_id"]
+    match = Match.find params["match_id"]
+    #user.match_count = user.match_count - 1
+
     player.destroy!
     
     redirect_to action: "show", controller: "matches", match_id: match.id
-  
   end
 
 end

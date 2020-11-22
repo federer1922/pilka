@@ -5,7 +5,7 @@ class MatchesController < ApplicationController
     match.team_1_name = params["team_1_name"]
     match.team_2_name = params["team_2_name"]
     match.match_result = params["match_result"]
-    match.save
+    match.save!
             
     redirect_to action: "index", controller: "users"
   end
@@ -35,8 +35,8 @@ class MatchesController < ApplicationController
     player.goals_scored = player.goals_scored + 1
     user = player.user
     user.goals_count = user.goals_count + 1
-    user.save
-    player.save 
+    user.save!
+    player.save!
 
     redirect_to action: "show", match_id: match.id
   end
@@ -48,7 +48,7 @@ class MatchesController < ApplicationController
     user = player.user
     user.goals_count = user.goals_count - 1
     user.save
-    if player.save
+    if player.save!
     else
       flash[:alert] = player.errors.full_messages.first 
     end

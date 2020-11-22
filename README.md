@@ -74,4 +74,6 @@ map- dla kazdego wykonuje nowy kod, tworzac nowa tablice(stara pozostaje niezmie
 map!- zastepuje stara tablice
 save!- przy false blad wyskakuje 
 puts- wyswietlanie na konsoli
+to_a- upewnienie sie ze pojdzie zapytanie do bazy danych
 
+cache

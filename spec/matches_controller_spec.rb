@@ -24,6 +24,7 @@ describe MatchesController, type: :controller do
     player = Player.new
     player.user = user
     player.match = match
+    player.goals_scored = 0
     player.save!
 
     get :match_destroy, params: { match_id: match.id }
@@ -40,6 +41,7 @@ describe MatchesController, type: :controller do
     player = Player.new
     player.user = user
     player.match = match
+    player.goals_scored = 0
     player.save!
 
     get :show, params: { match_id: match.id }
@@ -59,7 +61,7 @@ describe MatchesController, type: :controller do
     player.match = match
     player.user = user
     player.goals_scored = 0
-    player.save  
+    player.save!
 
     get :add_goal_scored, params: {player_id: player.id, match_id: match.id}
     
