@@ -27,34 +27,21 @@ class UsersController < ApplicationController
   end
 
   def index
-    #user = User.new
-    #user.username = "Arek"
-    #user2 = User.new
-    #user2.username = "Pawel"
-    #user3 = User.new
-    #user3.username = "Eryk"
-    #user4 = User.new
-    #user4.username = "Grzegorz"
-    #user5 = User.new
-    #user5.username = "Wojtek"
-    #user6 = User.new
-    #user6.username = "Kasia"
-
-    #@users = [user, user2, user3, user4, user5, user6, user6]
-    
     @users = User.all.order(:created_at)
     @matches = Match.all.order(:created_at)
     @players = Player.all.order(:created_at)
   end
   
-  def add_player_to_match
+  def add_player_to_team
     match = Match.find params["match_id"]
     user = User.find params["user_id"]
+    team_name = params["team_name"]
 
     player = Player.where(match: match, user: user).first
     if player.nil?
       player = Player.new
       player.match = match
+      player.team_name = team_name
       player.user = user
       player.goals_scored = 0
       user.match_count = user.match_count + 1

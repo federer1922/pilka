@@ -2,6 +2,8 @@ namespace :data do
   
   task :fix => :environment do |task, args|
     Player.where(goals_scored: nil).update_all(goals_scored: 0)
+    Match.all.each do |match|
+    Player.where(team_name: "match.team_1_name").update_all(team_name: [match.team_1_name, match.team_2_name].sample)
 
     User.all.each do |user|
       players = user.players
@@ -13,5 +15,6 @@ namespace :data do
       user.match_count = match_count
       user.save!
     end
+  end
   end
 end

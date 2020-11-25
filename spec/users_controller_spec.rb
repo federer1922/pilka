@@ -36,7 +36,7 @@ describe UsersController, type: :controller do
     expect(User.count).to eq 0
   end
 
-  it "adds player to match" do
+  it "adds player to team" do
     match = Match.new(team_1_name: "Lech", team_2_name: "Warta", match_result: "0:0")
     match.save!
 
@@ -51,7 +51,7 @@ describe UsersController, type: :controller do
     user.save!
     player.save!
 
-    get :add_player_to_match, params: { match_id: match.id, user_id: user.id }
+    get :add_player_to_team, params: { match_id: match.id, user_id: user.id }
 
     expect(Player.count).to eq 1
     expect(user.reload.match_count).to eq 1

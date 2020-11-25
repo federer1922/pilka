@@ -124,3 +124,40 @@ puts- wyswietlanie na konsoli
 to_a- upewnienie sie ze pojdzie zapytanie do bazy danych
 
 cache
+
+git push heroku main - aktualizacja apki
+heroku logs --tail - sprawdza aktywnosc danego logowania
+heroku run rake db:migrate - po aktualizacji apki migracja, zeby dzialala
+heroku run rake data:fix - naprawa danych w apce z tasks.rake
+
+
+def add_player_to_match
+    match = Match.find params["match_id"]
+    user = User.find params["user_id"]
+
+    player = Player.where(match: match, user: user).first
+    if player.nil?
+      player = Player.new
+      player.match = match
+      player.user = user
+      player.goals_scored = 0
+      user.match_count = user.match_count + 1
+      user.save
+      player.save
+
+      redirect_to action: "show", controller: "matches", match_id: match.id
+    else
+      flash[:alert] = "Player already added"
+      redirect_to action: "show", controller: "matches", match_id: match.id
+      
+    end
+  end
+
+"match.team_1_name" -> string, zwykly napis
+
+match.team_1_name -> kod ruby
+
+
+  
+  
+

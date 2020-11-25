@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get '/match_destroy', to: 'matches#match_destroy'
 
-  get '/add_player_to_match', to: 'users#add_player_to_match'
+  get '/add_player_to_team', to: 'users#add_player_to_team'
 
   get '/match_show', to: 'matches#show'
 
