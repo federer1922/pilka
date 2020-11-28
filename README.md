@@ -157,7 +157,22 @@ def add_player_to_match
 
 match.team_1_name -> kod ruby
 
+ add refference match - belong to home squad, away squad dodac 2 kolumny
+tabela matches ma miec 2 dodatkowe kolumny home_squad_id , away_squad_id do modelu squad
 
+etap 1
+dodanie meczu, tworzy sie mecz i 2 sklady
+dodanie playera do meczu, player dodaje sie do skladu
+rspec zielony
+
+etap 2
+migracja danych
+do istniejacych meczow dodane sa sklady
+istniejacy playerzy w bazie sa dodani do skladow
+
+etap 3
+sprzatanie, usuniecie niepotrzebnych kolumn, np.player.team_name
+rspec zielony
   
   
 

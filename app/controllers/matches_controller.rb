@@ -1,11 +1,26 @@
 class MatchesController < ApplicationController
 
   def match_create 
+    
+    home_squad = Squad.new
+    home_squad.team_name = params["home_team_name"]
+    home_squad.save!
+    
+    away_squad = Squad.new
+    away_squad.team_name = params["away_team_name"]
+    away_squad.save!
+    
+    
+    #match = Match.where(squad: squad).first
+    #home_squad = Squad.find params["home_squad_id"]
+    #away_squad = Squad.find params["away_squad_id"]
     match = Match.new
-    match.team_1_name = params["team_1_name"]
-    match.team_2_name = params["team_2_name"]
+    match.home_squad = home_squad
+    match.away_squad = away_squad
+    match.home_squad.team_name = params["home_team_name"]
+    match.away_squad.team_name = params["away_team_name"]
     match.match_result = params["match_result"]
-    match.save
+    match.save!
             
     redirect_to action: "index", controller: "users"
   end
@@ -13,8 +28,11 @@ class MatchesController < ApplicationController
   def match_destroy
     match = Match.find params["match_id"]
     
-    match.players.destroy_all
-    
+    #match.players.destroy_all
+    match.home_squad.players.destroy_all
+    match.away_squad.players.destroy_all
+    match.home_squad.destroy!
+    match.away_squad.destroy! 
     match.destroy!
         
     redirect_to action: "index", controller: "users"

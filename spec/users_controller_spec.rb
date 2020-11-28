@@ -19,7 +19,18 @@ describe UsersController, type: :controller do
   end
 
   it "deletes user" do
-    match = Match.new(team_1_name: "Lech", team_2_name: "Warta", match_result: "0:0")
+    home_squad = Squad.new
+    home_squad.team_name = "Lech"
+    home_squad.save!
+    
+    away_squad = Squad.new
+    away_squad.team_name = "Warta"
+    away_squad.save!
+
+    match = Match.new
+    match.match_result = "0:0"
+    match.home_squad = home_squad
+    match.away_squad = away_squad
     match.save!
 
     user = User.new(username: "Olaf", goals_count: 0, match_count: 0)
@@ -27,6 +38,7 @@ describe UsersController, type: :controller do
 
     player = Player.new
     player.user = user
+    player.squad = home_squad
     player.match = match
     player.goals_scored = 0
     player.save!
@@ -36,40 +48,57 @@ describe UsersController, type: :controller do
     expect(User.count).to eq 0
   end
 
-  it "adds player to team" do
-    match = Match.new(team_1_name: "Lech", team_2_name: "Warta", match_result: "0:0")
+  it "adds player to squad" do
+    home_squad = Squad.new
+    home_squad.team_name = "Lech"
+    home_squad.save!
+    
+    away_squad = Squad.new
+    away_squad.team_name = "Warta"
+    away_squad.save!
+
+    match = Match.new
+    match.match_result = "0:0"
+    match.home_squad = home_squad
+    match.away_squad = away_squad
     match.save!
 
     user = User.new(username: "Olaf", goals_count: 0, match_count: 0)
     user.save!
 
-    player = Player.new
-    player.user = user
-    player.match = match
-    player.goals_scored = 0
-    user.match_count = user.match_count + 1
-    user.save!
-    player.save!
-
-    get :add_player_to_team, params: { match_id: match.id, user_id: user.id }
+    get :add_player_to_squad, params: { squad_id: home_squad.id, user_id: user.id, match_id: match.id }
 
     expect(Player.count).to eq 1
+    player = Player.last
+    expect(player.squad).to eq home_squad
     expect(user.reload.match_count).to eq 1
   end
 
   it "destroys player" do
+    home_squad = Squad.new
+    home_squad.team_name = "Lech"
+    home_squad.save!
+    
+    away_squad = Squad.new
+    away_squad.team_name = "Warta"
+    away_squad.save!
+
+    match = Match.new
+    match.match_result = "0:0"
+    match.home_squad = home_squad
+    match.away_squad = away_squad
+    match.save!
     user = User.new(username: "Olaf", goals_count: 10, match_count: 10)
     user.save!
-    match = Match.new(team_1_name: "Lech", team_2_name: "Warta", match_result: "0:0")
-    match.save!
     
     player = Player.new
     player.user = user
+    player.squad = home_squad
     player.match = match
     player.goals_scored = 4
     player.save!
 
-    get :destroy_player, params: { match_id: match.id, player_id: player.id }
+    get :destroy_player, params: { player_id: player.id, squad_id: home_squad.id, match_id: match.id }
     
     expect(Player.count).to eq 0
     expect(user.reload.goals_count).to eq 6

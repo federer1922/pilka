@@ -30,23 +30,24 @@ class UsersController < ApplicationController
     @users = User.all.order(:created_at)
     @matches = Match.all.order(:created_at)
     @players = Player.all.order(:created_at)
+    @squads = Squad.all.order(:created_at)
   end
   
-  def add_player_to_team
-    match = Match.find params["match_id"]
+  def add_player_to_squad
     user = User.find params["user_id"]
-    team_name = params["team_name"]
+    squad = Squad.find params["squad_id"]
+    match = Match.find params["match_id"]
 
-    player = Player.where(match: match, user: user).first
+    player = Player.where(squad: squad, user: user).first
     if player.nil?
       player = Player.new
-      player.match = match
-      player.team_name = team_name
       player.user = user
+      player.squad = squad
+      player.match = match
       player.goals_scored = 0
       user.match_count = user.match_count + 1
-      user.save
-      player.save
+      user.save!
+      player.save!
 
       redirect_to action: "show", controller: "matches", match_id: match.id
     else
@@ -58,7 +59,9 @@ class UsersController < ApplicationController
 
   def destroy_player
     player = Player.find params["player_id"]
+    squad = Squad.find params["squad_id"]
     match = Match.find params["match_id"]
+
     user = player.user
     user.match_count = user.match_count - 1
     user.goals_count = user.goals_count - player.goals_scored
