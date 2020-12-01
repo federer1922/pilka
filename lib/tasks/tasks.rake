@@ -20,7 +20,7 @@ namespace :data do
       match.save!
 
       Player.where(match_id: match.id).each do |player|
-        player.squad_id = [player.home_squad_id, player.away_squad_id].sample
+        player.squad_id = [match.home_squad_id, match.away_squad_id].sample
         player.save!
       end  
     
