@@ -173,6 +173,15 @@ istniejacy playerzy w bazie sa dodani do skladow
 etap 3
 sprzatanie, usuniecie niepotrzebnych kolumn, np.player.team_name
 rspec zielony
+
+
+
+Match.all.each do |match|
+  if !match.home_squad
+    home_squad = Squad.new
+   dodac team name, players
+  end
+end
   
   
 

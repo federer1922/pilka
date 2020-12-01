@@ -20,10 +20,10 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-2">
-      <%= @match.team_1_name %>
+      <%= @match.home_team_name %>
     </div>
     <div class="col-sm-2">
-      <%= @match.team_2_name %>
+      <%= @match.away_team_name %>
     </div>
     <div class="col-sm-2">
       <%= @match.match_result %>
@@ -105,7 +105,7 @@
     <div class="col-md-auto">
       <form class="form-inline" action="/add_player_to_squad" style="display: inline;">
         <input type="hidden" name="match_id" value="<%= @match.id %>">
-        <input type="hidden" name="team_name" value="<%= @match.team_1_name %>">
+        <input type="hidden" name="team_name" value="<%= @match.home_team_name %>">
         <div class="input-group">
         <select class="custom-select" name="user_id">
           <option selected>Choose...</option>

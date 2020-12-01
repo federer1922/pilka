@@ -66,11 +66,11 @@
   <div class="row">
     <div class="col">
       <form action="/match_create" >
-        <label for="team_1_name">  <p class="font-weight-bold">Add match result</p> </label><br>
-        <input type="text" class="form-control" name="team_1_name" placeholder="Enter home team">
+        <label for="home_team_name">  <p class="font-weight-bold">Add match result</p> </label><br>
+        <input type="text" class="form-control" name="home_team_name" placeholder="Enter home team">
         <p>
         </p>
-        <input type="text" class="form-control" name="team_2_name" placeholder="Enter away team">
+        <input type="text" class="form-control" name="away_team_name" placeholder="Enter away team">
         <p>
         </p>
         <input type="text" class="form-control" name="match_result" placeholder="Enter result">
@@ -110,10 +110,10 @@
   <% @matches.each do |match| %>
     <div class="row">
       <div class="col-sm-2">
-        <%= match.team_1_name %>
+        <%= match.home_team_name %>
       </div>
       <div class="col-sm-2">
-        <%= match.team_2_name %>
+        <%= match.away_team_name %>
       </div>
       <div class="col-sm-2">
         <%= match.match_result %>
