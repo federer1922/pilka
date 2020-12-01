@@ -40,7 +40,8 @@ class MatchesController < ApplicationController
 
   def show
     @match = Match.find params["match_id"]
-    @players = @match.players.order(:created_at).to_a
+    #@players = @match.players.order(:created_at).to_a
+     @players = @squad.players.order(:created_at).to_a
     #@players = @match.players
     @other_users = User.all.to_a - @players.map { |player| player.user }
     @team_1_players = Player.where(team_name: @match.team_1_name).order(:created_at).to_a

@@ -10,14 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_25_222543) do
+ActiveRecord::Schema.define(version: 2020_12_01_081244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "matches", force: :cascade do |t|
-    t.string "team_1_name"
-    t.string "team_2_name"
     t.string "match_result"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -30,12 +28,9 @@ ActiveRecord::Schema.define(version: 2020_11_25_222543) do
   create_table "players", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "match_id", null: false
     t.bigint "user_id", null: false
     t.integer "goals_scored"
-    t.string "team_name"
     t.bigint "squad_id"
-    t.index ["match_id"], name: "index_players_on_match_id"
     t.index ["squad_id"], name: "index_players_on_squad_id"
     t.index ["user_id"], name: "index_players_on_user_id"
   end
@@ -54,6 +49,5 @@ ActiveRecord::Schema.define(version: 2020_11_25_222543) do
     t.integer "match_count"
   end
 
-  add_foreign_key "players", "matches"
   add_foreign_key "players", "users"
 end

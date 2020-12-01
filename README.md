@@ -184,4 +184,6 @@ Match.all.each do |match|
 end
   
   
+usuwanie kolumny z tabeli  
+  remove_column :table_name, :column_name
 
