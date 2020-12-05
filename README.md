@@ -163,6 +163,7 @@ tabela matches ma miec 2 dodatkowe kolumny home_squad_id , away_squad_id do mode
 etap 1
 dodanie playera do meczu, player dodaje sie do skladu
 rspec zielony
+zrobione
 
 etap 2
 dodac team model i tabele, team ma wiele squadow, team_name dla team.  squad belongs to team
