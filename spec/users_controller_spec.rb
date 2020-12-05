@@ -39,7 +39,6 @@ describe UsersController, type: :controller do
     player = Player.new
     player.user = user
     player.squad = home_squad
-    player.match = match
     player.goals_scored = 0
     player.save!
 
@@ -94,7 +93,6 @@ describe UsersController, type: :controller do
     player = Player.new
     player.user = user
     player.squad = home_squad
-    player.match = match
     player.goals_scored = 4
     player.save!
 

@@ -34,7 +34,6 @@ describe MatchesController, type: :controller do
     player = Player.new
     player.user = user
     player.squad = home_squad
-    player.match = match # to do usunięcie kolumny match_id z tabeli players
     player.goals_scored = 0
     player.save!
 
@@ -66,7 +65,6 @@ describe MatchesController, type: :controller do
     player = Player.new
     player.user = user
     player.squad = home_squad
-    player.match = match
     player.goals_scored = 0
     player.save!
 
@@ -94,7 +92,6 @@ describe MatchesController, type: :controller do
     user.save!
     
     player = Player.new
-    player.match = match
     player.squad = home_squad
     player.user = user
     player.goals_scored = 0
@@ -126,7 +123,6 @@ describe MatchesController, type: :controller do
     
     player = Player.new
     player.squad = home_squad
-    player.match = match
     player.user = user
     player.goals_scored = 3
     player.save!
@@ -157,7 +153,6 @@ describe MatchesController, type: :controller do
     
     player = Player.new
     player.squad = home_squad
-    player.match = match
     player.user = user
     player.goals_scored = 1
     player.save!
