@@ -161,18 +161,13 @@ match.team_1_name -> kod ruby
 tabela matches ma miec 2 dodatkowe kolumny home_squad_id , away_squad_id do modelu squad
 
 etap 1
-dodanie meczu, tworzy sie mecz i 2 sklady
 dodanie playera do meczu, player dodaje sie do skladu
 rspec zielony
 
 etap 2
-migracja danych
-do istniejacych meczow dodane sa sklady
-istniejacy playerzy w bazie sa dodani do skladow
+dodac team model i tabele, team ma wiele squadow, team_name dla team.  squad belongs to team
+strona show_team, wyswietlac rozegrane mecze
 
-etap 3
-sprzatanie, usuniecie niepotrzebnych kolumn, np.player.team_name
-rspec zielony
 
 
 
@@ -187,3 +182,5 @@ end
 usuwanie kolumny z tabeli  
   remove_column :table_name, :column_name
 
+
+shuffle - zamiast sample zmienia na nil

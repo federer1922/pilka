@@ -35,15 +35,15 @@ class UsersController < ApplicationController
   
   def add_player_to_squad
     user = User.find params["user_id"]
-    squad = Squad.find params["squad_id"]
     match = Match.find params["match_id"]
+    squad = Squad.find params["squad_id"]
 
     player = Player.where(squad: squad, user: user).first
     if player.nil?
       player = Player.new
       player.user = user
       player.squad = squad
-      player.match = match
+      #player.match = match
       player.goals_scored = 0
       user.match_count = user.match_count + 1
       user.save!
@@ -59,8 +59,8 @@ class UsersController < ApplicationController
 
   def destroy_player
     player = Player.find params["player_id"]
-    squad = Squad.find params["squad_id"]
     match = Match.find params["match_id"]
+    squad = Squad.find params["squad_id"]
 
     user = player.user
     user.match_count = user.match_count - 1

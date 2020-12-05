@@ -40,12 +40,16 @@ class MatchesController < ApplicationController
 
   def show
     @match = Match.find params["match_id"]
-    #@players = @match.players.order(:created_at).to_a
-     @players = @squad.players.order(:created_at).to_a
+    @home_squad = @match.home_squad 
+    @away_squad = @match.away_squad
+    @home_players = @home_squad.players.order(:created_at).to_a
+    @away_players = @away_squad.players.order(:created_at).to_a
     #@players = @match.players
-    @other_users = User.all.to_a - @players.map { |player| player.user }
-    @team_1_players = Player.where(team_name: @match.team_1_name).order(:created_at).to_a
-    @team_2_players = Player.where(team_name: @match.team_2_name).order(:created_at).to_a
+    #@other_users = User.all.to_a - @players.map { |player| player.user }
+    @other_users = User.all.to_a - @home_players.map { |player| player.user } - @away_players.map { |player| player.user }
+
+    #@team_1_players = Player.where(team_name: @match.team_1_name).order(:created_at).to_a
+    #@team_2_players = Player.where(team_name: @match.team_2_name).order(:created_at).to_a
   end
 
   def add_goal_scored
