@@ -129,6 +129,7 @@ git push heroku main - aktualizacja apki
 heroku logs --tail - sprawdza aktywnosc danego logowania
 heroku run rake db:migrate - po aktualizacji apki migracja, zeby dzialala
 heroku run rake data:fix - naprawa danych w apce z tasks.rake
+heroku open - wyswietla stronke
 
 
 def add_player_to_match

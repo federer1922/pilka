@@ -2,24 +2,43 @@ namespace :data do
   
   task :fix => :environment do |task, args|
     #Player.where(goals_scored: nil).update_all(goals_scored: 0)
+    
+    team_names = Squad.pluck(:team_name).uniq
+    squads = Squad.where(team_name: team_names)
 
-    User.all.each do |user|
-      match_ids = []
-      user.players.each do |player|
-        begin
-          match = Match.all.sample  
-        end while match_ids.include?(match.id)
-        match_ids << match.id
-        
-        squad = [match.home_squad, match.away_squad].sample
-        
-
-
-
-        player.squad = squad
-        player.save!
-      end
+    squads.each do |squad| 
+    
+      team = Team.new
+      team.name = squad.team_name
+      team.save! 
     end
+   
+    Squad.all.each do |squad|
+      team = Team.where(name: squad.team.name).first
+      squad.team = team
+      squad.team_name = team.name
+      squad.save!
+    end
+   
+   
+   
+   
+   
+   
+    #User.all.each do |user|
+     # match_ids = []
+      #user.players.each do |player|
+       # begin
+        #  match = Match.all.sample  
+       # end while match_ids.include?(match.id)
+       # match_ids << match.id
+        
+       # squad = [match.home_squad, match.away_squad].sample
+
+        #player.squad = squad
+        #player.save!
+      #end
+    #end
 
 
 
@@ -36,7 +55,7 @@ namespace :data do
        # away_squad.team_name = match.team_2_name
         #away_squad.save!
         #match.away_squad = away_squad
-      #en
+      #end
 
       #match.save!
       #Player.all.each do |player| 

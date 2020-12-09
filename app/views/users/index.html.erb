@@ -110,10 +110,10 @@
   <% @matches.each do |match| %>
     <div class="row">
       <div class="col-sm-2">
-        <%= match.home_team_name %>
+        <%= match.home_squad.team_name %>
       </div>
       <div class="col-sm-2">
-        <%= match.away_team_name %>
+        <%= match.away_squad.team_name %>
       </div>
       <div class="col-sm-2">
         <%= match.match_result %>

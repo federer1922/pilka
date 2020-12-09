@@ -17,8 +17,6 @@ class MatchesController < ApplicationController
     match = Match.new
     match.home_squad = home_squad
     match.away_squad = away_squad
-    match.home_squad.team_name = params["home_team_name"]
-    match.away_squad.team_name = params["away_team_name"]
     match.match_result = params["match_result"]
     match.save!
             
