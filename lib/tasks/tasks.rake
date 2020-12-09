@@ -3,14 +3,14 @@ namespace :data do
   task :fix => :environment do |task, args|
     #Player.where(goals_scored: nil).update_all(goals_scored: 0)
     
-    team_names = Squad.pluck(:team_name).uniq
-    squads = Squad.where(team_name: team_names)
+    #team_names = Squad.pluck(:team_name).uniq
+    #squads = Squad.where(team_name: team_names)
 
-    squads.each do |squad| 
-      team = Team.new
-      team.name = squad.team_name
-      team.save! 
-    end
+    #squads.each do |squad| 
+     # team = Team.new
+      #team.name = squad.team_name
+      #team.save! 
+    #end
    
     Squad.all.each do |squad|
       team = Team.where(name: squad.team.name).first
