@@ -186,3 +186,15 @@ usuwanie kolumny z tabeli
 
 
 shuffle - zamiast sample zmienia na nil
+
+
+
+komendy w rails c:
+
+Match.all.map { |match| { home_squad_id: match.home_squad_id, away_squad_id: match.away_squad_id, home_team_name: match.home_squad.team_name, away_team_name: match.away_squad.team_name}}
+
+zamiana team_name dla squad:
+squad = Squad.find 39
+squad.team_name = "Rennes"
+squad.team_id = 36
+squad.save

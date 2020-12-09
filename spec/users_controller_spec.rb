@@ -21,10 +21,16 @@ describe UsersController, type: :controller do
   it "deletes user" do
     home_squad = Squad.new
     home_squad.team_name = "Lech"
+    team = Team.new
+    team.name = home_squad.team_name
+    home_squad.team = team 
     home_squad.save!
     
     away_squad = Squad.new
     away_squad.team_name = "Warta"
+    team = Team.new
+    team.name = away_squad.team_name
+    away_squad.team = team 
     away_squad.save!
 
     match = Match.new
@@ -50,10 +56,16 @@ describe UsersController, type: :controller do
   it "adds player to squad" do
     home_squad = Squad.new
     home_squad.team_name = "Lech"
+    team = Team.new
+    team.name = home_squad.team_name
+    home_squad.team = team 
     home_squad.save!
     
     away_squad = Squad.new
     away_squad.team_name = "Warta"
+    team = Team.new
+    team.name = away_squad.team_name
+    away_squad.team = team 
     away_squad.save!
 
     match = Match.new
@@ -76,10 +88,16 @@ describe UsersController, type: :controller do
   it "destroys player" do
     home_squad = Squad.new
     home_squad.team_name = "Lech"
+    team = Team.new
+    team.name = home_squad.team_name
+    home_squad.team = team 
     home_squad.save!
     
     away_squad = Squad.new
     away_squad.team_name = "Warta"
+    team = Team.new
+    team.name = away_squad.team_name
+    away_squad.team = team 
     away_squad.save!
 
     match = Match.new

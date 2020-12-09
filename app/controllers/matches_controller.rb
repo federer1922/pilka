@@ -4,12 +4,28 @@ class MatchesController < ApplicationController
     
     home_squad = Squad.new
     home_squad.team_name = params["home_team_name"]
-    home_squad.save!
+    if team = Team.where(name: home_squad.team_name).first
+      home_squad.team = team
+      home_squad.save!
+    else
+      team = Team.new
+      team.name = home_squad.team_name
+      home_squad.team = team
+      home_squad.save!
+    end
+    
     
     away_squad = Squad.new
     away_squad.team_name = params["away_team_name"]
-    away_squad.save!
-    
+    if team = Team.where(name: away_squad.team_name).first
+      away_squad.team = team
+      away_squad.save!
+    else
+      team = Team.new
+      team.name = away_squad.team_name
+      away_squad.team = team
+      away_squad.save!
+    end
     
     #match = Match.where(squad: squad).first
     #home_squad = Squad.find params["home_squad_id"]
@@ -30,7 +46,7 @@ class MatchesController < ApplicationController
     match.home_squad.players.destroy_all
     match.away_squad.players.destroy_all
     match.home_squad.destroy!
-    match.away_squad.destroy! 
+    match.away_squad.destroy!
     match.destroy!
         
     redirect_to action: "index", controller: "users"

@@ -11,15 +11,22 @@ describe MatchesController, type: :controller do
     expect(match.home_squad.team_name).to eq "Lech"
     expect(match.away_squad.team_name).to eq "Warta"
     expect(match.match_result). to eq "0:0"
+    expect(Team.count).to eq 2 
   end
 
   it "deletes match" do
     home_squad = Squad.new
     home_squad.team_name = "Lech"
+    team = Team.new
+    team.name = home_squad.team_name
+    home_squad.team = team
     home_squad.save!
     
     away_squad = Squad.new
     away_squad.team_name = "Warta"
+    team = Team.new
+    team.name = away_squad.team_name
+    away_squad.team = team
     away_squad.save!
 
     match = Match.new
@@ -42,15 +49,22 @@ describe MatchesController, type: :controller do
     expect(Match.count).to eq 0
     expect(Squad.count).to eq 0
     expect(Player.count).to eq 0
+    expect(Team.count).to eq 2
   end
 
   it "shows" do
     home_squad = Squad.new
     home_squad.team_name = "Lech"
+    team = Team.new
+    team.name = home_squad.team_name
+    home_squad.team = team
     home_squad.save!
     
     away_squad = Squad.new
     away_squad.team_name = "Warta"
+    team = Team.new
+    team.name = away_squad.team_name
+    away_squad.team = team
     away_squad.save!
 
     match = Match.new
@@ -76,10 +90,16 @@ describe MatchesController, type: :controller do
   it "adds goal scored" do
     home_squad = Squad.new
     home_squad.team_name = "Lech"
+    team = Team.new
+    team.name = home_squad.team_name
+    home_squad.team = team
     home_squad.save!
     
     away_squad = Squad.new
     away_squad.team_name = "Warta"
+    team = Team.new
+    team.name = away_squad.team_name
+    away_squad.team = team
     away_squad.save!
 
     match = Match.new
@@ -106,10 +126,16 @@ describe MatchesController, type: :controller do
   it "subracts goal scored" do
     home_squad = Squad.new
     home_squad.team_name = "Lech"
+    team = Team.new
+    team.name = home_squad.team_name
+    home_squad.team = team
     home_squad.save!
     
     away_squad = Squad.new
     away_squad.team_name = "Warta"
+    team = Team.new
+    team.name = away_squad.team_name
+    away_squad.team = team
     away_squad.save!
 
     match = Match.new
@@ -136,10 +162,16 @@ describe MatchesController, type: :controller do
   it "does not subracts goal from goals count if goals scored 0" do
     home_squad = Squad.new
     home_squad.team_name = "Lech"
+    team = Team.new
+    team.name = home_squad.team_name
+    home_squad.team = team
     home_squad.save!
     
     away_squad = Squad.new
     away_squad.team_name = "Warta"
+    team = Team.new
+    team.name = away_squad.team_name
+    away_squad.team = team 
     away_squad.save!
 
     match = Match.new
