@@ -13,7 +13,7 @@ namespace :data do
     #end
    
     Squad.all.each do |squad|
-      team = Team.where(name: squad.team.name).first
+      team = Team.where(name: squad.team_name).first
       squad.team = team
       squad.team_name = team.name
       squad.save!
