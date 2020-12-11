@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     @matches = Match.all.order(:created_at)
     @players = Player.all.order(:created_at)
     @squads = Squad.all.order(:created_at)
-    @teams = Team.all.order(:created_at)
+    
   end
   
   def add_player_to_squad

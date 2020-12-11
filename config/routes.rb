@@ -21,4 +21,6 @@ Rails.application.routes.draw do
 
   get '/subtract_goal_scored', to: 'matches#subtract_goal_scored'
 
+  get '/team_show', to: 'teams#show'
+
 end

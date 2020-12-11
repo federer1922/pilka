@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <p class="font-weight-bold">Team</p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <%= @team.name %>
+    </div>
+  </div>
+</div>
+
+<p>
+</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <p class="font-weight-bold">Home matches</p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+    Away Team
+    </div>
+    <div class="col-sm-2">
+    Score
+    </div>
+  </div>
+</div>
+
+<p>
+</p>
+
+<div class="container"> 
+  <% @home_matches.each do |match| %>
+    <div class="row"> 
+      <div class="col-sm-2">
+        <%= match.away_squad.team_name %>
+      </div>
+      <div class="col-sm-2">
+        <%= match.match_result %>
+      </div>
+    </div>
+  <% end %>
+</div> 
+
+<p>
+</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <p class="font-weight-bold">Away matches</p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+    Home Team
+    </div>
+    <div class="col-sm-2">
+    Score
+    </div>
+  </div>
+</div>
+
+<p>
+</p>
+
+<div class="container"> 
+  <% @away_matches.each do |match| %>
+    <div class="row"> 
+      <div class="col-sm-2">
+        <%= match.home_squad.team_name %>
+      </div>
+      <div class="col-sm-2">
+        <%= match.match_result %>
+      </div>
+    </div>
+  <% end %>
+</div> 

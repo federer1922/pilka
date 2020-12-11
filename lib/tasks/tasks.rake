@@ -12,12 +12,12 @@ namespace :data do
       #team.save! 
     #end
    
-    Squad.all.each do |squad|
-      team = Team.where(name: squad.team_name).first
-      squad.team = team
-      squad.team_name = team.name
-      squad.save!
-    end
+    #Squad.all.each do |squad|
+     # team = Team.where(name: squad.team_name).first
+      #squad.team = team
+      #squad.team_name = team.name
+      #squad.save!
+    #end
    
    
    
