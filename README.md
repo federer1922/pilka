@@ -162,13 +162,13 @@ match.team_1_name -> kod ruby
 tabela matches ma miec 2 dodatkowe kolumny home_squad_id , away_squad_id do modelu squad
 
 etap 1
-dodanie playera do meczu, player dodaje sie do skladu
-rspec zielony
-zrobione
-
+add a model spec
+review aplikacji
+przygotowac cv i wszystko potrzebne do maila
 etap 2
-dodac team model i tabele, team ma wiele squadow, team_name dla team.  squad belongs to team
-strona show_team, wyswietlac rozegrane mecze
+wyslanie maila prograils
+
+
 
 
 
