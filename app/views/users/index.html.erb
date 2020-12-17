@@ -16,21 +16,18 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-2">
-    Name
+      <p class="font-weight-bold">Name</p>
     </div>
     <div class="col-sm-2">
-    Goals count
+      <p class="font-weight-bold">Goals count</p>
     </div>
     <div class="col-sm-2">
-    Matches played
+      <p class="font-weight-bold">Matches played</p>
     </div>
     <div class="col-md-auto">
     </div>
   </div>
 </div>
-
-<p>
-</p>
 
 <div class="container">
   
@@ -82,21 +79,18 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-2">
-    Home team
+      <p class="font-weight-bold">Home team</p>
     </div>
     <div class="col-sm-2">
-    Away team
+      <p class="font-weight-bold">Away team</p>
     </div>
     <div class="col-sm-2">
-    Score
+      <p class="font-weight-bold">Score</p>
     </div>
     <div class="col-md-auto">
     </div>
   </div>
 </div>
-
-<p>
-</p>
 
 <div class="container">
   <div class="row">
@@ -106,10 +100,10 @@
   <% @matches.each do |match| %>
     <div class="row">
       <div class="col-sm-2">
-        <%= link_to match.home_squad.team_name, team_show_path(team_id: match.home_squad.team.id), method: "get", class: "a-primary", target: "_blank" %>
+        <%= link_to match.home_squad.team_name, team_show_path(team_id: match.home_squad.team.id), method: "get", class: "text-dark", target: "_blank" %>
       </div>
       <div class="col-sm-2">
-        <%= link_to match.away_squad.team_name, team_show_path(team_id: match.away_squad.team.id), method: "get", class: "a-primary", target: "_blank" %>
+        <%= link_to match.away_squad.team_name, team_show_path(team_id: match.away_squad.team.id), method: "get", class: "text-dark", target: "_blank" %>
       </div>
       <div class="col-sm-2">
         <%= match.match_result %>
