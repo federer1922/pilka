@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     player = Player.where(squad: squad, user: user).first
     if player.nil?
       player = Player.new
-      player.user = user
+      player.user = user 
       player.squad = squad
       #player.match = match
       player.goals_scored = 0

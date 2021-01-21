@@ -63,7 +63,7 @@ class MatchesController < ApplicationController
     @other_users = User.all.to_a - @home_players.map { |player| player.user } - @away_players.map { |player| player.user }
 
     #@team_1_players = Player.where(team_name: @match.team_1_name).order(:created_at).to_a
-    #@team_2_players = Player.where(team_name: @match.team_2_name).order(:created_at).to_a
+    #@team_2_players = Player.(team_name: @match.team_2_name).order(:created_at).to_a
   end
 
   def add_goal_scored

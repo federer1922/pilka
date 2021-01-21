@@ -42,7 +42,7 @@ user # wyswietla uzytkownika
 
 
 tworzenie użytkownika przez stronę w bazie danych:
-routes.rb, users controolller def create, new html.rb
+routes.rb, users controller def create, new html.rb
 
 odczytywanie uzytkownikow z bazy danych :
 def new
@@ -191,7 +191,8 @@ shuffle - zamiast sample zmienia na nil
 
 komendy w rails c:
 
-Match.all.map { |match| { home_squad_id: match.home_squad_id, away_squad_id: match.away_squad_id, home_team_name: match.home_squad.team_name, away_team_name: match.away_squad.team_name}}
+Match.all.map { |match| { home_squad_id: match.home_squad_id, away_squad_id: match.away_squad_id, home_team_name: match.home_squad.team_name, away_team_name: match.away_squad.team_name }}
+Player.all.map { |player| { username: player.user.username, user_id: player.user_id, player_goals: player.goals_scored, id: player.id }}
 
 zamiana team_name dla squad:
 squad = Squad.find 39
