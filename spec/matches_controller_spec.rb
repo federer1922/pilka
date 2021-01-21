@@ -5,13 +5,18 @@ describe MatchesController, type: :controller do
 
   it "creates match" do
     get :match_create, params: { home_team_name: "Lech", away_team_name: "Warta", match_result: "0:0"  }
+    get :match_create, params: { home_team_name: "Warta", away_team_name: "Legia", match_result: "1:0"  }
     
-    expect(Match.count).to eq 1
-    match = Match.last
+    expect(Match.count).to eq 2
+    match = Match.first
     expect(match.home_squad.team_name).to eq "Lech"
     expect(match.away_squad.team_name).to eq "Warta"
     expect(match.match_result). to eq "0:0"
-    expect(Team.count).to eq 2 
+    match = Match.last
+    expect(match.home_squad.team_name).to eq "Warta"
+    expect(match.away_squad.team_name).to eq "Legia"
+    expect(match.match_result).to eq "1:0"
+    expect(Team.count).to eq 3 
   end
 
   it "deletes match" do
@@ -108,7 +113,7 @@ describe MatchesController, type: :controller do
     match.away_squad = away_squad
     match.save!
     
-    user = User.new(username: "Olaf", goals_count: 0, match_count: 0)
+    user = User.new(username: "Olaf", goals_count: 2, match_count: 4)
     user.save!
     
     player = Player.new
@@ -120,7 +125,7 @@ describe MatchesController, type: :controller do
     get :add_goal_scored, params: {player_id: player.id, match_id: match.id}
     
     expect(player.reload.goals_scored).to eq 1
-    expect(user.reload.goals_count). to eq 1
+    expect(user.reload.goals_count). to eq 3
   end
 
   it "subracts goal scored" do
