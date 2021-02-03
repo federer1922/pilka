@@ -8,6 +8,7 @@ describe TeamsController, type: :controller do
     home_squad.team_name = "Lech"
     team = Team.new
     team.name = home_squad.team_name
+    team.save!
     home_squad.team = team
     home_squad.save!
     
@@ -15,6 +16,7 @@ describe TeamsController, type: :controller do
     away_squad.team_name = "Warta"
     team = Team.new
     team.name = away_squad.team_name
+    team.save!
     away_squad.team = team
     away_squad.save!
 
