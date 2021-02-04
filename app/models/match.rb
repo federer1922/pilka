@@ -7,6 +7,7 @@ class Match < ApplicationRecord
   has_many :teams, through: :home_squad, class_name: "Squad"
   has_many :teams, through: :away_squad, class_name: "Squad"
   
+  validates :match_result, presence: true
  
  
 end

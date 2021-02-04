@@ -44,7 +44,6 @@ class UsersController < ApplicationController
       player = Player.new
       player.user = user 
       player.squad = squad
-      #player.match = match
       player.goals_scored = 0
       user.match_count = user.match_count + 1
       user.save!

@@ -15,7 +15,6 @@ class MatchesController < ApplicationController
       home_squad.save!
     end
     
-    
     away_squad = Squad.new
     away_squad.team_name = params["away_team_name"]
     if team = Team.where(name: away_squad.team_name).first
@@ -36,9 +35,12 @@ class MatchesController < ApplicationController
     match.home_squad = home_squad
     match.away_squad = away_squad
     match.match_result = params["match_result"]
-    match.save!
-            
-    redirect_to action: "index", controller: "users"
+    if match.save        
+      redirect_to action: "index", controller: "users"
+    else
+      flash[:alert] = match.errors.full_messages.first
+      redirect_to action: "index", controller: "users"
+    end
   end
         
   def match_destroy
