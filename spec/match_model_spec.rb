@@ -48,4 +48,9 @@ describe Match, type: :model do
     expect(match.save).to be false
   end
 
+  it "is not valid without match_result" do
+    match = Match.new(match_result: nil)
+    expect(match).to_not be_valid
+  end
+
 end
