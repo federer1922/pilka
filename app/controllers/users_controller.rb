@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def create 
+
     user_already_in_database = User.where(username: params["username"]).first
     
     if user_already_in_database.nil?
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+
     user = User.find params["user_id"]
     user.players.destroy_all
     user.destroy!
@@ -27,14 +29,15 @@ class UsersController < ApplicationController
   end
 
   def index
+    
     @users = User.all.order(:created_at)
     @matches = Match.all.order(:created_at)
     @players = Player.all.order(:created_at)
     @squads = Squad.all.order(:created_at)
-    
   end
   
   def add_player_to_squad
+
     user = User.find params["user_id"]
     match = Match.find params["match_id"]
     squad = Squad.find params["squad_id"]
@@ -52,12 +55,12 @@ class UsersController < ApplicationController
       redirect_to action: "show", controller: "matches", match_id: match.id
     else
       flash[:alert] = "Player already added"
-      redirect_to action: "show", controller: "matches", match_id: match.id
-      
+      redirect_to action: "show", controller: "matches", match_id: match.id  
     end
   end
 
   def destroy_player
+    
     player = Player.find params["player_id"]
     match = Match.find params["match_id"]
     squad = Squad.find params["squad_id"]
@@ -70,5 +73,4 @@ class UsersController < ApplicationController
     
     redirect_to action: "show", controller: "matches", match_id: match.id
   end
-
 end

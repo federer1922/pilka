@@ -26,15 +26,6 @@ describe TeamsController, type: :controller do
     match.away_squad = away_squad
     match.save!
 
-   # user = User.new(username: "Olaf", goals_count: 0, match_count: 0)
-   # user.save!
-
-   # player = Player.new
-   # player.user = user
-   # player.squad = home_squad
-   # player.goals_scored = 0
-   # player.save!
-
     get :show, params: { team_id: team.id }
 
     expect(response).to have_http_status(200)

@@ -74,7 +74,7 @@ describe Player, type: :model do
     expect(player.save).to be false
   end
 
-  it "is not valid without username" do
+  it "it ensures user.username is equal to player.username" do
     home_squad = Squad.new
     home_squad.team_name = "Lech"
     team = Team.new
@@ -103,10 +103,11 @@ describe Player, type: :model do
     player = Player.new
     player.user = user 
     player.squad = home_squad
-    player.goals_scored = -1
+    player.goals_scored = 1
     user.match_count = user.match_count + 1
     user.save!
-    
-    expect(player).to_not be_valid
+    player.save!
+  
+    expect(user.username).to eq player.username
   end
 end

@@ -210,5 +210,4 @@ describe MatchesController, type: :controller do
     expect(player.reload.goals_scored).to eq 0
     expect(user.reload.goals_count). to eq 3
   end
-
 end

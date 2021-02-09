@@ -7,12 +7,11 @@ class Player < ApplicationRecord
     user.username
   end
 
-validate :validate_goals_scored
-  def validate_goals_scored
-    if goals_scored < 0
-      errors.add(:goals_scored, 'can not be less than 0')
+  validate :validate_goals_scored
+    def validate_goals_scored
+      if goals_scored < 0
+        errors.add(:goals_scored, 'can not be less than 0')
+      end
     end
-  end
-
 end
   

@@ -12,3 +12,7 @@ rake db:migrate
 
 rails s
 
+# Running specs
+
+rspec
+

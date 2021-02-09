@@ -13,10 +13,4 @@ describe User, type: :model do
 
     expect(user.save).to be false
   end
-
-  it "is not valid without username" do
-    user = User.new(username: nil)
-    
-    expect(user).to_not be_valid
-  end
 end

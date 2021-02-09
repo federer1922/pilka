@@ -131,5 +131,4 @@ describe UsersController, type: :controller do
     expect(user.reload.goals_count).to eq 7
     expect(user.reload.match_count).to eq 13
   end
-
 end
