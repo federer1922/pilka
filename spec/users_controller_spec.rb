@@ -16,7 +16,7 @@ describe UsersController, type: :controller do
   end
 
   it "does not create a user without the username" do
-    get :create, params: { username: "" }
+    get :create, params: { username: nil }
 
     expect(flash[:alert]).to be_present
     expect(User.count).to eq 0

@@ -9,7 +9,7 @@ describe User, type: :model do
   end
 
   it "ensures username presence" do
-    user = User.new(username: "", goals_count: 0, match_count: 0)
+    user = User.new(username: nil, goals_count: 0, match_count: 0)
 
     expect(user.save).to be false
   end

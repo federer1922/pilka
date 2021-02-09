@@ -43,7 +43,7 @@ describe Match, type: :model do
     match = Match.new
     match.home_squad = home_squad
     match.away_squad = away_squad
-    match.match_result = ""
+    match.match_result = nil
 
     expect(match.save).to be false
   end
