@@ -116,9 +116,10 @@ describe UsersController, type: :controller do
     match.home_squad = home_squad
     match.away_squad = away_squad
     match.save!
+
     user = User.new(username: "Olaf", goals_count: 10, match_count: 14)
     user.save!
-    
+
     player = Player.new
     player.user = user
     player.squad = home_squad

@@ -20,6 +20,7 @@ describe MatchesController, type: :controller do
   end
 
   it "deletes match" do
+
     home_squad = Squad.new
     home_squad.team_name = "Lech"
     team = Team.new
@@ -42,13 +43,22 @@ describe MatchesController, type: :controller do
     match.away_squad = away_squad
     match.save!
 
-    user = User.new(username: "Olaf", goals_count: 0, match_count: 1)
-    user.save!
+    user_1 = User.new(username: "Olaf", goals_count: 5, match_count: 4)
+    user_1.save!
+
+    user_2 = User.new(username: "Arek", goals_count: 3, match_count: 2)
+    user_2.save!
 
     player = Player.new
-    player.user = user
+    player.user = user_1
     player.squad = home_squad
-    player.goals_scored = 0
+    player.goals_scored = 1
+    player.save!
+
+    player = Player.new
+    player.user = user_2
+    player.squad = away_squad
+    player.goals_scored = 2
     player.save!
 
     get :match_destroy, params: { match_id: match.id }
@@ -57,6 +67,10 @@ describe MatchesController, type: :controller do
     expect(Squad.count).to eq 0
     expect(Player.count).to eq 0
     expect(Team.count).to eq 2
+    expect(user_1.reload.goals_count).to eq 4
+    expect(user_1.reload.match_count).to eq 3
+    expect(user_2.reload.goals_count).to eq 1
+    expect(user_2.reload.match_count).to eq 1
   end
 
   it "shows" do

@@ -15,4 +15,3 @@ rails s
 # Running specs
 
 rspec
-

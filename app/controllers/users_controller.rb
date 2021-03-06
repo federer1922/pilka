@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     user = player.user
     user.match_count = user.match_count - 1
     user.goals_count = user.goals_count - player.goals_scored
-    user.save
+    user.save!
     player.destroy!
     
     redirect_to action: "show", controller: "matches", match_id: match.id
