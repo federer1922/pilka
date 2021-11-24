@@ -101,7 +101,7 @@
         <input type="hidden" name="squad_id" value="<%= @match.home_squad.id %>">
         <div class="input-group">
         <select class="custom-select" name="user_id">
-          <option selected>Choose...</option>
+          <option selected disabled>Choose...</option>
           <% @other_users.each do |user| %>
             <option value="<%= user.id %>"><%= user.username %></option>
           <% end %>
@@ -186,7 +186,7 @@
         <input type="hidden" name="squad_id" value="<%= @match.away_squad.id %>">
         <div class="input-group">
         <select class="custom-select" name="user_id">
-          <option selected>Choose...</option>
+          <option selected disabled>Choose...</option>
           <% @other_users.each do |user| %>
             <option value="<%= user.id %>"><%= user.username %></option>
           <% end %>

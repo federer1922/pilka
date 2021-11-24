@@ -100,10 +100,10 @@
   <% @matches.each do |match| %>
     <div class="row">
       <div class="col-sm-2">
-        <%= link_to match.home_squad.team_name, team_show_path(team_id: match.home_squad.team.id), method: "get", class: "text-dark", target: "_blank" %>
+        <%= link_to match.home_squad.team_name, team_show_path(team_id: match.home_squad.team.id), method: "get", class: "text-dark" %>
       </div>
       <div class="col-sm-2">
-        <%= link_to match.away_squad.team_name, team_show_path(team_id: match.away_squad.team.id), method: "get", class: "text-dark", target: "_blank" %>
+        <%= link_to match.away_squad.team_name, team_show_path(team_id: match.away_squad.team.id), method: "get", class: "text-dark" %>
       </div>
       <div class="col-sm-2">
         <%= match.match_result %>
@@ -113,7 +113,7 @@
         <input type="hidden" name="match_id" value="<%= match.id %>">
         <button type="submit" class="btn btn-outline-dark btn-sm">Remove match result</button>
         </form>
-        <%= link_to "Match details", match_show_path(match_id: match.id), method: "get", class: "btn btn-primary", target: "_blank" %>   
+        <%= link_to "Match details", match_show_path(match_id: match.id), method: "get", class: "btn btn-primary" %>   
       </div>
     </div>
   <% end %>
