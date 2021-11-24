@@ -59,6 +59,39 @@ describe UsersController, type: :controller do
     expect(User.count).to eq 0
   end
 
+  it "shows error if user not chosen" do
+    home_squad = Squad.new
+    home_squad.team_name = "Lech"
+    team = Team.new
+    team.name = home_squad.team_name
+    team.save!
+    home_squad.team = team 
+    home_squad.save!
+    
+    away_squad = Squad.new
+    away_squad.team_name = "Warta"
+    team = Team.new
+    team.name = away_squad.team_name
+    team.save!
+    away_squad.team = team 
+    away_squad.save!
+
+    match = Match.new
+    match.match_result = "0:0"
+    match.home_squad = home_squad
+    match.away_squad = away_squad
+    match.save!
+
+    user = User.new(username: "Olaf", goals_count: 0, match_count: 0)
+    user.save!
+
+    get :add_player_to_squad, params: { squad_id: home_squad.id, match_id: match.id }
+
+    expect(Player.count).to eq 0
+    expect(flash[:alert]).to eq "Player must be chosen"
+
+  end
+
   it "adds player to squad" do
     home_squad = Squad.new
     home_squad.team_name = "Lech"
