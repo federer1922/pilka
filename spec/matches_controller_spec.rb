@@ -4,8 +4,8 @@ describe MatchesController, type: :controller do
   render_views
 
   it "creates match" do
-    get :match_create, params: { home_team_name: "Lech", away_team_name: "Warta", match_result: "0:0"  }
-    get :match_create, params: { home_team_name: "Warta", away_team_name: "Legia", match_result: "1:0"  }
+    get :match_create, params: { match: { home_team_name: "Lech", away_team_name: "Warta", home_score: 0, away_score: 0 } }
+    get :match_create, params: { match: { home_team_name: "Warta", away_team_name: "Legia", home_score: 1, away_score: 0 } }
     
     expect(Match.count).to eq 2
     match = Match.first

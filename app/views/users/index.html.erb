@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col-3">
       <form action="/create" >
-        <label for="username">  <p class="font-weight-bold">Add user</p> </label><br>
+        <label for="username" class="font-weight-bold">Add user</label><br>
         <input type="text" class="form-control" name="username" placeholder="Enter username">
         <button type="submit" class="btn btn-info">Submit</button>
       </form>
@@ -57,17 +57,28 @@
 
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col-3">
       <form action="/match_create" >
-        <label for="home_team_name">  <p class="font-weight-bold">Add match result</p> </label><br>
-        <input type="text" class="form-control" name="home_team_name" placeholder="Enter home team">
+        <label for="home_team_name" class="font-weight-bold">Add match teams</label><br>
+        <input type="text" class="form-control" name="match[home_team_name]" placeholder="Enter home team">
         <p>
         </p>
-        <input type="text" class="form-control" name="away_team_name" placeholder="Enter away team">
+        <input type="text" class="form-control" name="match[away_team_name]" placeholder="Enter away team">
         <p>
         </p>
-        <input type="text" class="form-control" name="match_result" placeholder="Enter result">
-        <button type="submit" class="btn btn-info">Submit</button>
+        <label for="home_score" class="font-weight-bold">Add score</label><br>
+        <div class="form-row">
+          <div class="col">
+            <input type="number" min="0" max="150" class="form-control" name="match[home_score]" placeholder="Home">
+          </div>
+          <div class="col-sm-1">
+          <input type="text" readonly class="form-control-plaintext text-center" id=":" value=":">
+          </div>
+          <div class="col">
+            <input type="number" min="0" max="150" class="form-control" name="match[away_score]" placeholder="Away">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-info float-right">Submit</button>
       </form>
     </div>   
   </div>
