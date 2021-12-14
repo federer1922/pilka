@@ -83,7 +83,6 @@
           <input type="hidden" value="delete" name="_method">
           <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token() %>"/>
           <input type="hidden" name="match_id" value="<%= @match.id %>">
-          <input type="hidden" name="squad_id" value="<%= @match.home_squad.id %>">
           <input type="hidden" name="player_id" value="<%= player.id %>">
           <button type="submit" class="btn btn-outline-dark btn-sm">Remove player</button>
         </form>
@@ -177,7 +176,6 @@
           <input type="hidden" value="delete" name="_method">
           <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token() %>"/>
           <input type="hidden" name="match_id" value="<%= @match.id %>">  
-          <input type="hidden" name="squad_id" value="<%= @match.away_squad.id %>">
           <input type="hidden" name="player_id" value="<%= player.id %>">
           <button type="submit" class="btn btn-outline-dark btn-sm">Remove player</button>
         </form>
