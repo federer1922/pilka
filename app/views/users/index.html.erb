@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-3">
-      <form action="/create" >
+      <form action="/create" method=post>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <label for="username" class="font-weight-bold">Add user</label><br>
         <input type="text" class="form-control" name="username" placeholder="Enter username">
         <button type="submit" class="btn btn-info">Submit</button>
@@ -43,7 +44,9 @@
         <%= user.match_count %>
       </div>
       <div class="col-md-auto">
-        <form class="form-inline" action="/destroy" style="display: inline;">
+        <form class="form-inline" action="/destroy" method="post" style="display: inline;">
+          <input type="hidden" value="delete" name="_method">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token() %>"/>
           <input type="hidden" name="user_id" value="<%= user.id %>">
           <button type="submit" class="btn btn-outline-dark btn-sm">Remove user</button>
         </form>
@@ -58,7 +61,8 @@
 <div class="container">
   <div class="row">
     <div class="col-3">
-      <form action="/match_create" >
+      <form action="/match_create" method=post>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <label for="home_team_name" class="font-weight-bold">Add match teams</label><br>
         <input type="text" class="form-control" name="match[home_team_name]" placeholder="Enter home team">
         <p>
@@ -120,7 +124,9 @@
         <%= match.match_result %>
       </div>
       <div class="col-md-auto">
-        <form class="form-inline" action="/match_destroy" style="display: inline;">
+        <form class="form-inline" action="/match_destroy" method=post style="display: inline;">
+        <input type="hidden" value="delete" name="_method">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token() %>"/>
         <input type="hidden" name="match_id" value="<%= match.id %>">
         <button type="submit" class="btn btn-outline-dark btn-sm">Remove match result</button>
         </form>

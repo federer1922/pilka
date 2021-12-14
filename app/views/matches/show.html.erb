@@ -61,19 +61,25 @@
       </div>
       <div class="col-md-auto">
 
-        <form class="form-inline" action="/add_goal_scored" style="display: inline;"> 
+        <form class="form-inline" action="/add_goal_scored" method=post style="display: inline;"> 
+          <input type="hidden" value="put" name="_method">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token() %>"/>
           <input type="hidden" name="match_id" value="<%= @match.id %>">  
           <input type="hidden" name="player_id" value="<%= player.id %>">
           <button type="submit" class="btn btn-success btn-sm">Add goal</button>
         </form>
 
-        <form class="form-inline" action="/subtract_goal_scored" style="display: inline;">
+        <form class="form-inline" action="/subtract_goal_scored" method=post style="display: inline;">
+          <input type="hidden" value="put" name="_method">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token() %>"/>
           <input type="hidden" name="match_id" value="<%= @match.id %>">
           <input type="hidden" name="player_id" value="<%= player.id %>">
           <button type="submit" class="btn btn-danger btn-sm">Subtract goal</button>
         </form>
         
-        <form class="form-inline" action="/destroy_player" style="display: inline;">
+        <form class="form-inline" action="/destroy_player" method=post style="display: inline;">
+          <input type="hidden" value="delete" name="_method">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token() %>"/>
           <input type="hidden" name="match_id" value="<%= @match.id %>">
           <input type="hidden" name="squad_id" value="<%= @match.home_squad.id %>">
           <input type="hidden" name="player_id" value="<%= player.id %>">
@@ -96,7 +102,8 @@
     <div class="col-sm-2"> 
     </div>
     <div class="col-md-auto">
-      <form class="form-inline" action="/add_player_to_squad" style="display: inline;">
+      <form class="form-inline" action="/player_create" method=post style="display: inline;">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <input type="hidden" name="match_id" value="<%= @match.id %>">
         <input type="hidden" name="squad_id" value="<%= @match.home_squad.id %>">
         <div class="input-group">
@@ -146,19 +153,25 @@
       </div>
       <div class="col-md-auto">
 
-        <form class="form-inline" action="/add_goal_scored" style="display: inline;"> 
+        <form class="form-inline" action="/add_goal_scored" method=post style="display: inline;"> 
+          <input type="hidden" value="put" name="_method">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token() %>"/>
           <input type="hidden" name="match_id" value="<%= @match.id %>">  
           <input type="hidden" name="player_id" value="<%= player.id %>">
           <button type="submit" class="btn btn-success btn-sm">Add goal</button>
         </form>
 
-        <form class="form-inline" action="/subtract_goal_scored" style="display: inline;">
+        <form class="form-inline" action="/subtract_goal_scored" method=post style="display: inline;">
+          <input type="hidden" value="put" name="_method">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token() %>"/>
           <input type="hidden" name="match_id" value="<%= @match.id %>">
           <input type="hidden" name="player_id" value="<%= player.id %>">
           <button type="submit" class="btn btn-danger btn-sm">Subtract goal</button>
         </form>
         
-        <form class="form-inline" action="/destroy_player" style="display: inline;">
+        <form class="form-inline" action="/destroy_player" method=post style="display: inline;">
+          <input type="hidden" value="delete" name="_method">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token() %>"/>
           <input type="hidden" name="match_id" value="<%= @match.id %>">  
           <input type="hidden" name="squad_id" value="<%= @match.away_squad.id %>">
           <input type="hidden" name="player_id" value="<%= player.id %>">
@@ -181,7 +194,8 @@
     <div class="col-sm-2"> 
     </div>
     <div class="col-md-auto">
-      <form class="form-inline" action="/add_player_to_squad" style="display: inline;">
+      <form class="form-inline" action="/player_create" method=post style="display: inline;">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <input type="hidden" name="match_id" value="<%= @match.id %>">
         <input type="hidden" name="squad_id" value="<%= @match.away_squad.id %>">
         <div class="input-group">

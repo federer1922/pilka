@@ -16,70 +16,72 @@
 
 <p>
 </p>
-
-<div class="container">
-  <div class="row">
-    <div class="col-sm-2">
-      <p class="font-weight-bold">Home matches:</p>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-sm-2">
-      <p class="font-weight-bold">Away team</p>
-    </div>
-    <div class="col-sm-2">
-      <p class="font-weight-bold">Score</p>
-    </div>
-  </div>
-</div>
-
-<div class="container"> 
-  <% @home_matches.each do |match| %>
-    <div class="row"> 
+<% if @home_matches.present? %>
+  <div class="container">
+    <div class="row">
       <div class="col-sm-2">
-        <%= match.away_squad.team_name %>
-      </div>
-      <div class="col-sm-2">
-        <%= match.match_result %>
+        <p class="font-weight-bold">Home matches:</p>
       </div>
     </div>
-  <% end %>
-</div> 
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2">
+        <p class="font-weight-bold">Away team</p>
+      </div>
+      <div class="col-sm-2">
+        <p class="font-weight-bold">Score</p>
+      </div>
+    </div>
+  </div>
+  <div class="container"> 
+    <% @home_matches.each do |match| %>
+      <div class="row"> 
+        <div class="col-sm-2">
+          <%= match.away_squad.team_name %>
+        </div>
+        <div class="col-sm-2">
+          <%= match.match_result %>
+        </div>
+      </div>
+    <% end %>
+  </div> 
+<% end %>
 
 <p>
 </p>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-2">
-      <p class="font-weight-bold">Away matches:</p>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-sm-2">
-      <p class="font-weight-bold">Home team</p>
-    </div>
-    <div class="col-sm-2">
-      <p class="font-weight-bold">Score</p>
-    </div>
-  </div>
-</div>
-
-<div class="container"> 
-  <% @away_matches.each do |match| %>
-    <div class="row"> 
+<% if @away_matches.present? %>
+  <div class="container">
+    <div class="row">
       <div class="col-sm-2">
-        <%= match.home_squad.team_name %>
-      </div>
-      <div class="col-sm-2">
-        <%= match.match_result %>
+        <p class="font-weight-bold">Away matches:</p>
       </div>
     </div>
-  <% end %>
-</div> 
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2">
+        <p class="font-weight-bold">Home team</p>
+      </div>
+      <div class="col-sm-2">
+        <p class="font-weight-bold">Score</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container"> 
+    <% @away_matches.each do |match| %>
+      <div class="row"> 
+        <div class="col-sm-2">
+          <%= match.home_squad.team_name %>
+        </div>
+        <div class="col-sm-2">
+          <%= match.match_result %>
+        </div>
+      </div>
+    <% end %>
+  </div> 
+<% end %>

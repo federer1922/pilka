@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
 
-  def match_create 
+  def create 
     alert = MatchCreateService.call(match_params["home_team_name"], match_params["away_team_name"], match_params["home_score"], match_params["away_score"])
     if alert.present?
       flash[:alert] = alert
@@ -10,7 +10,7 @@ class MatchesController < ApplicationController
     end
   end
         
-  def match_destroy
+  def destroy
     match = Match.find params["match_id"]
 
     match.home_squad.players.each do |player|
@@ -43,32 +43,6 @@ class MatchesController < ApplicationController
     @away_players = @away_squad.players.order(:created_at).to_a
     @other_users = User.all.to_a - @home_players.map { |player| player.user } - @away_players.map { |player| player.user }
   end
-
-  def add_goal_scored  
-    match = Match.find params["match_id"]
-    player = Player.find params["player_id"]
-    player.goals_scored = player.goals_scored + 1
-    user = player.user
-    user.goals_count = user.goals_count + 1
-    user.save
-    player.save
-
-    redirect_to action: "show", match_id: match.id
-  end
-
-  def subtract_goal_scored  
-    match = Match.find params["match_id"]
-    player = Player.find params["player_id"]
-    player.goals_scored = player.goals_scored - 1
-    if player.save
-    user = player.user
-    user.goals_count = user.goals_count - 1
-    user.save
-    else
-      flash[:alert] = player.errors.full_messages.first 
-    end
-    redirect_to action: "show", match_id: match.id
-  end 
 
   def match_params
     params.require(:match).permit("home_team_name", "away_team_name", "home_score", "away_score")

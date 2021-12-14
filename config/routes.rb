@@ -3,24 +3,23 @@ Rails.application.routes.draw do
 
   root to: "users#index"
 
-  get '/create', to: 'users#create'
+  post '/create', to: 'users#create'
 
-  get '/destroy', to: 'users#destroy'
+  delete '/destroy', to: 'users#destroy'
 
-  get '/match_create', to: 'matches#match_create'
-
-  get '/match_destroy', to: 'matches#match_destroy'
-
-  get '/add_player_to_squad', to: 'users#add_player_to_squad'
+  post '/match_create', to: 'matches#create'
 
   get '/match_show', to: 'matches#show'
 
-  get '/destroy_player', to: 'users#destroy_player'
+  delete '/match_destroy', to: 'matches#destroy'
 
-  get '/add_goal_scored', to: 'matches#add_goal_scored'
+  post '/player_create', to: 'players#create'
 
-  get '/subtract_goal_scored', to: 'matches#subtract_goal_scored'
+  delete '/destroy_player', to: 'players#destroy'
+
+  put '/add_goal_scored', to: 'players#add_goal_scored'
+
+  put '/subtract_goal_scored', to: 'players#subtract_goal_scored'
 
   get '/team_show', to: 'teams#show'
-  
 end
