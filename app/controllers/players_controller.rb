@@ -1,29 +1,12 @@
 class PlayersController < ApplicationController
   def create
-    if params["user_id"].nil?
-      match = Match.find params["match_id"]
-
-      flash[:alert] = "Player must be chosen"
-      redirect_to action: "show", controller: "matches", match_id: match.id 
+    match = Match.find params["match_id"]
+    alert = PlayerCreateService.call(params["user_id"], params["match_id"], params["squad_id"])
+    if alert.present?
+      flash[:alert] = alert
+      redirect_to action: "show", controller: "matches", match_id: match.id
     else
-      user = User.find params["user_id"]
-      match = Match.find params["match_id"]
-      squad = Squad.find params["squad_id"]
-      player = Player.where(squad: squad, user: user).first 
-      if player.nil?
-        player = Player.new
-        player.user = user 
-        player.squad = squad
-        player.goals_scored = 0
-        user.match_count = user.match_count + 1
-        user.save!
-        player.save!
-  
-        redirect_to action: "show", controller: "matches", match_id: match.id
-      else
-        flash[:alert] = "Player already added"
-        redirect_to action: "show", controller: "matches", match_id: match.id  
-      end
+      redirect_to action: "show", controller: "matches", match_id: match.id
     end
   end
 
