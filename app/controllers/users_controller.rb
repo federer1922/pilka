@@ -1,20 +1,10 @@
 class UsersController < ApplicationController
-  def create 
-    user_already_in_database = User.where(username: params["username"]).first
-    
-    if user_already_in_database.nil?
-      user = User.new
-      user.username = params["username"]
-      user.goals_count = 0
-      user.match_count = 0
-      if user.save
-        redirect_to action: "index" 
-      else
-        flash[:alert] = user.errors.full_messages.first
-        redirect_to action: "index"
-      end
+  def create
+    alert = UserCreateService.call(params["username"])
+    if alert.present?
+      flash[:alert] = alert
+      redirect_to action: "index"
     else
-      flash[:alert] = "User already added" 
       redirect_to action: "index"
     end
   end
