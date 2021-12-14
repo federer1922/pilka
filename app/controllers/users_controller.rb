@@ -32,47 +32,4 @@ class UsersController < ApplicationController
     @players = Player.all.order(:created_at)
     @squads = Squad.all.order(:created_at)
   end
-  
-  def add_player_to_squad
-    if params["user_id"].nil?
-      match = Match.find params["match_id"]
-
-      flash[:alert] = "Player must be chosen"
-      redirect_to action: "show", controller: "matches", match_id: match.id 
-    else
-      user = User.find params["user_id"]
-      match = Match.find params["match_id"]
-      squad = Squad.find params["squad_id"]
-      player = Player.where(squad: squad, user: user).first
-      
-      if player.nil?
-        player = Player.new
-        player.user = user 
-        player.squad = squad
-        player.goals_scored = 0
-        user.match_count = user.match_count + 1
-        user.save!
-        player.save!
-  
-        redirect_to action: "show", controller: "matches", match_id: match.id
-      else
-        flash[:alert] = "Player already added"
-        redirect_to action: "show", controller: "matches", match_id: match.id  
-      end
-    end
-  end
-
-  def destroy_player 
-    player = Player.find params["player_id"]
-    match = Match.find params["match_id"]
-    squad = Squad.find params["squad_id"]
-
-    user = player.user
-    user.match_count = user.match_count - 1
-    user.goals_count = user.goals_count - player.goals_scored
-    user.save!
-    player.destroy!
-    
-    redirect_to action: "show", controller: "matches", match_id: match.id
-  end
 end
