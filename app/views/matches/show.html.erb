@@ -33,20 +33,22 @@
 <p>
 </p>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-2">
-      <p class="font-weight-bold">Home team players</p>
-    </div>
-    <div class="col-sm-2">
-      <p class="font-weight-bold">Goals scored</p>
-    </div>
-    <div class="col-sm-2">
-    </div>
-    <div class="col-md-auto">
+<% if @home_players.present? %>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2">
+        <p class="font-weight-bold">Home team players</p>
+      </div>
+      <div class="col-sm-2">
+        <p class="font-weight-bold">Goals scored</p>
+      </div>
+      <div class="col-sm-2">
+      </div>
+      <div class="col-md-auto">
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 
 <div class="container"> 
   <% @home_players.each do |player| %>
@@ -125,20 +127,22 @@
 <p>
 </p>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-2">
-      <p class="font-weight-bold">Away team players</p>
-    </div>
-    <div class="col-sm-2">
-      <p class="font-weight-bold">Goals scored</p>
-    </div>
-    <div class="col-sm-2">
-    </div>
-    <div class="col-md-auto">
+<% if @away_players.present? %>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2">
+        <p class="font-weight-bold">Away team players</p>
+      </div>
+      <div class="col-sm-2">
+        <p class="font-weight-bold">Goals scored</p>
+      </div>
+      <div class="col-sm-2">
+      </div>
+      <div class="col-md-auto">
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 
 <div class="container"> 
   <% @away_players.each do |player| %>
