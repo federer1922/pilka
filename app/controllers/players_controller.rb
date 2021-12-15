@@ -13,33 +13,25 @@ class PlayersController < ApplicationController
   def destroy
     match = Match.find params["match_id"]
     PlayerDestroyService.call(params["player_id"])
-    
+
     redirect_to action: "show", controller: "matches", match_id: match.id
   end
 
-  def add_goal_scored  
+  def add_goal_scored 
     match = Match.find params["match_id"]
-    player = Player.find params["player_id"]
-    player.goals_scored = player.goals_scored + 1
-    user = player.user
-    user.goals_count = user.goals_count + 1
-    user.save
-    player.save
-
+    AddGoalService.call(params["player_id"])
+    
     redirect_to action: "show", controller: "matches", match_id: match.id
   end
 
   def subtract_goal_scored  
     match = Match.find params["match_id"]
-    player = Player.find params["player_id"]
-    player.goals_scored = player.goals_scored - 1
-    if player.save
-      user = player.user
-      user.goals_count = user.goals_count - 1
-      user.save
+    alert = SubtractGoalService.call(params["player_id"])
+    if alert.present?
+      flash[:alert] = alert
+      redirect_to action: "show", controller: "matches", match_id: match.id
     else
-      flash[:alert] = player.errors.full_messages.first 
+      redirect_to action: "show", controller: "matches", match_id: match.id
     end
-    redirect_to action: "show", controller: "matches", match_id: match.id
   end
 end
